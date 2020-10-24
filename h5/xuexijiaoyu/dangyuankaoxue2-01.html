@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="x5-orientation" content="portrait">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>党员考学</title>
+    <!--[if lt IE 9]>
+        <script language="JavaScript">
+          (function() {
+            setTimeout(function(){
+                var body = (document.getElementsByTagName("body"))[0];
+                body.innerHTML = "很抱歉，您当前的浏览器版本过低，网站无法正常显示。 请点击<a href='http://10.0.11.111:8080/Chrome_V20_11.exe'>下载谷歌浏览器</a>，下载后点击“运行”自动安装。<br /> 如您的浏览器版本已经是IE9以上，请关闭兼容模式视图：点击右上角“工具”->兼容性视图>在弹出窗口中取消勾选兼容性视图选项。<br />感谢您对慧招网的支持与关注！";
+            },300);
+        })();
+        </script>
+
+    <![endif]-->
+    <link rel="stylesheet" href="../../css/public.css">
+    <link rel="stylesheet" href="../../css/index.css">
+	<link rel="stylesheet" type="text/css" href="../../css/new.css"/>
+    <script src="../../js/rem.js"></script>
+</head>
+<body>
+    <div class="background-font background-font2">
+        <div class="position">
+            <div class="dangzhangdanggui-header box">
+                <div class="dangzhangdanggui-header-left box box-align-items box-justify-content">
+                    <div class="header-text">党员考学</div>
+                </div>
+                <div class="dangzhangdanggui-header-right">
+                    <div class="box" id="backBtn">
+                        <img src="../../img/fanhui.png">
+                        <div class="dangzhangdanggui-header-right-div">返回上一级</div>
+                    </div>
+                </div>
+            </div>
+			<div class="scroll-font">
+					<div class="dangzhangdanggui-xiangqing-title text-align-center">题库一</div>
+					<div class="dividing-line"></div>
+					<p class="dangzhangdanggui-xiangqing-title">填空题(31/50)</p>
+					<div>
+					<p class="dangyuankaoxue-content">
+						34.中共十九大把习近平新时代中国特殊社会主义思想确立为中国共产党必须长期坚持的指导思想并写入
+						(<input type="text" class="dangyuankaoxue-inp"/>),
+						十三届全国人大一次会议把这一重要思想载入
+						(<input type="text" class="dangyuankaoxue-inp"/>),
+						实现了党和国家指导思想的与时俱进。
+					</p>
+					<div class="box box-justify-content2 box-align-items dangyuankaoxue2-bottom">
+						<div class="box box-align-items">
+							<div class="dangyuankaoxue2-bottom-div" id="submitBtn">确认</div>
+							<div class="dangyuankaoxue2-bottom-div" id="nextBtn" style="display: none;">下一题</div>
+							<p class="dangyuankaoxue2-bottom-title" id="dangyuankaoxue2-bottom-title">回答错误</p>
+						</div>
+						<a id="itemClick">查 看 提 示</a>
+					</div>
+					<p class="dangyuankaoxue-tishi" id="dangyuankaoxue-tishi2">提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息</p>
+					<p class="dangyuankaoxue-tishi" id="dangyuankaoxue-tishi">
+						正确答案：党章，宪法 <br>
+						答案解析答案解析答案解析答案解析答案解析答案解析答案解析
+					</p>
+				</div>
+			</div>
+        </div>
+    </div>
+</body>
+<script src="../../js/jquery-1.11.3.min.js"></script>
+<script src="../../js/public.js"></script>
+<script type="text/javascript">
+	//查看提示信息
+	$("#itemClick").click(function(){
+		$("#dangyuankaoxue-tishi2").show()
+	})
+	
+	//确认点击事件
+	$("#submitBtn").click(function(){
+		$(this).hide();
+		$("#nextBtn").show();
+		$("#dangyuankaoxue2-bottom-title").show();
+		$("#dangyuankaoxue-tishi").show();
+		$(".dangyuankaoxue-inp").css("color","#ff0000");
+		$(".dangyuankaoxue-inp").attr("readonly","readonly");
+		
+		var str = "",
+			length = $(".dangyuankaoxue-inp").length;  //str 用户填空内容拼接成字符串格式 逗号隔开
+		$(".dangyuankaoxue-inp").each(function(i){
+			if(i == length - 1){
+				str += $(this).val();
+			}else{
+				str += $(this).val() + ",";
+			}
+		})
+	})
+	
+	//点击下一题事件
+	$("#nextBtn").click(function(){
+		location.replace = "dangyuankaoxue-jieguo.html";
+	})
+</script>
+</html>

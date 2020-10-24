@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<meta name="x5-orientation" content="portrait">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>党章党规</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/rem.js"></script>
+</head>
+<body>
+    <div class="background-font background-font2">
+        <div class="position">
+            <div class="dangzhangdanggui-header box">
+                <div class="dangzhangdanggui-header-left box box-align-items box-justify-content">
+                    <div class="header-text" id="dangjiandanggui">党章党规</div>
+                </div>
+                <div class="dangzhangdanggui-header-right">
+                    <div class="box" id="backBtn">
+                        <img src="../img/fanhui.png">
+                        <div class="dangzhangdanggui-header-right-div">返回上一级</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dangguidangzhang-list scroll-font box box-wrap" id="listClick">
+
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/public.js"></script>
+<script>
+
+
+    var article_cat = getQueryVariable('article_cat');
+
+    var html1 = '';
+    var Headertitle = '';
+    switch (article_cat) {
+        case '1410':
+            Headertitle = '党章党规';
+            break;
+        case '1408':
+            Headertitle = '品牌案例';
+            break;
+
+        default:
+            Headertitle = '党章党规';
+    }
+
+    $('#dangjiandanggui').html(Headertitle);
+    $.ajax({
+        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/ArticleList',
+        method: 'POST',
+        async : true,
+        tradition:true,
+        crossDomain: true,
+
+        dataType: 'json',
+        data: {article_cat:article_cat},
+        success: function(jsondata){
+
+            jsondata = Object.values(jsondata);
+            arr = jsondata[2];
+            console.log(arr);
+
+            $.each(arr,function(index,item){
+                console.log(item);
+                html = "        <div data-url=\"dangzhangdanggui-xiangqing.html?article_id="+item['article_id']+"&article_cat="+article_cat+"\">" +
+                    "                    <div class=\"dangguidangzhang-list-div text-align-center\">";
+                if(item['article_thumb']){
+                    html2 =   "                        <img src="+item['article_thumb']+" alt=\"\">" ;
+
+                }else{
+                    html2 =   "                        <img src=\"../img/dangguidangzhang-01.png\" alt=\"\">" ;
+
+                }
+                  html3 =   "                        <div>"+item['article_title']+"</div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"dangguidangzhang-list-title\">"+item['article_title']+"</div>" +
+                    "                </div>";
+
+                html1 += html+html2+html3;
+
+            })
+
+
+            $("#listClick").html(html1);
+
+
+        },
+        failure: function (data) {
+            console.log('Failure');
+        }
+    })
+
+
+    function getQueryVariable(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+
+
+</script>
+
+</html>
