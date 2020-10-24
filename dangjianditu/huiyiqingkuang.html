@@ -5,7 +5,7 @@
     <meta content="telephone=no,email=no" name="format-detection">
     <meta name="x5-orientation" content="portrait">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>中共珠海大横琴集团有限公司委员会</title>
+    <title>党委会</title>
     <!--[if lt IE 9]>
         <script language="JavaScript">
           (function() {
@@ -19,14 +19,15 @@
     <![endif]-->
     <link rel="stylesheet" href="../css/public.css">
     <link rel="stylesheet" href="../css/index.css">
+	<link rel="stylesheet" type="text/css" href="../css/new.css"/>
     <script src="../js/rem.js"></script>
 </head>
 <body>
     <div class="background-font background-font2">
-        <div class="page-content2">
+        <div class="position">
             <div class="dangzhangdanggui-header box">
-                <div class="dangzhangdanggui-header-left dangzhangdanggui-header-left5 box box-align-items box-justify-content dangjianditu-margin">
-                    <div class="header-text">中共珠海大横琴集团有限公司委员会</div>
+                <div class="dangzhangdanggui-header-left box box-align-items box-justify-content">
+                    <div class="header-text">党委会</div>
                 </div>
                 <div class="dangzhangdanggui-header-right">
                     <div class="box" id="backBtn">
@@ -35,14 +36,12 @@
                     </div>
                 </div>
             </div>
-           <div class="box box-justify-content2">
+           <div class="box box-justify-content2" style="width:12.75rem;">
                 <div class="border-font" style="height: 7.75rem;" >
                     <div class="border-font-div">
                         <img class="dangjianditu-img" style="width:3.8rem;" src="../img/01.png" alt="">
-                        <p class="weiyuanhui text-align-center">委员会</p>
-                        <div class="xuexifenbu-list box" id="xuexifenbu-list">
-
-                        </div>
+                        <p class="weiyuanhui text-align-center">党委会</p>
+                        <div class="xuexifenbu-list2" id="xuexifenbu-list2"></div>
                     </div>
                 </div>
            </div>
@@ -52,40 +51,58 @@
 <script src="../js/jquery-1.11.3.min.js"></script>
 <script src="../js/public.js"></script>
 <script>
+    var meeting_type = getQueryVariable('meeting_type');
+    var maxLength = 200;
+    var party_no = getQueryVariable('party_no');
+    var html1 = '';
+    var Headertitle = '';
+    switch (meeting_type) {
+        case '2000':
+            Headertitle = '党委会';
+            break;
+        case '2001':
+            Headertitle = '中心组学习';
+            break;
+        case '2002':
+            Headertitle = '民主生活会';
+            break;
 
-    var diploma_id = getQueryVariable('diploma_id');
-    var maxLength = 500;
+    }
+
+    $('.header-text').html(Headertitle);
+
+    party_no = 101;
+    meeting_type = 2001;
     $.ajax({
-        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/PartyDiploma',
+        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/MeetingList',
         method: 'POST',
         async : true,
         tradition:true,
         crossDomain: true,
 
         dataType: 'json',
-        data: {diploma_id:diploma_id},
+        data: {meeting_type:meeting_type,party_no:party_no},
         success: function(jsondata){
 
             jsondata = Object.values(jsondata);
+            arr = jsondata[2];
 
-            var arr = jsondata[2]['party_list'];
-            console.log(arr);
-
-            var html = '<div class="xuexifenbu-list-left">',
-                html2 ='<div class="xuexifenbu-list-right">';
+            var html = '<div class="xuexifenbu-list2-top box box-align-items2">',
+                html2 ='<div class="xuexifenbu-list2-bottom box">';
             $.each(arr,function(index,item){
-                arrname = item['name'].substring(0,18);
-                var wd = Number(item['num'])/maxLength*10.75;
-                html += '<div>'+ arrname +'</div>';
-                html2 +='<div class="box box-align-items">'+
-                    '<div class="xuexifenbu-list-right-jindutiao" style="width:'+ wd +'rem;"></div>'+ item['num'] +
+                var hd = Number(item['num'])/maxLength*5;
+                html +='<div class="xuexifenbu-list-top-jindutiao2" onclick="itemClick('+item['meeting_start_time']+','+party_no+','+meeting_type+')"   data-url="jutinianfen.html?party_no='+party_no+'&meeting_type='+meeting_type+'&yuefen='+item["meeting_start_time"]+' ">'
+                    + item['num'] +
+                    '<p class="xuexifenbu-list-top-jindutiao2-p" style="height:'+ hd +'rem;"></p>'+
                     '</div>';
+                html2 += '<p class="xuexifenbu-list2-bottom-p text-align-center">'+ item['meeting_start_time'] +'</p>';
             })
             html +=  '</div>';
+            html2 +=  '</div>';
+            $("#xuexifenbu-list2").html(html+html2);
             //  html2 +=  '</div>';
 
 
-            $("#xuexifenbu-list").html(html+html2);
 
 
         },
@@ -108,6 +125,12 @@
         return(false);
     }
 
+
+
+	//点击年份事件
+	function itemClick(yuefen,party_no,meeting_type){
+		location.href = 'jutinianfen.html?party_no='+party_no+'&meeting_type='+meeting_type+'&yuefen='+yuefen+'';
+	}
 </script>
 
 </html>

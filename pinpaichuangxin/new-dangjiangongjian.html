@@ -49,27 +49,19 @@
 							</ul>
 						</div>
 					</div>
+
 					<div class="border-font" style="width:4.5rem;height: 7.75rem;">
 						<div class="border-font-div">
 							<img class="dangjianditu-img" style="width:2.58rem;" src="../img/01.png" alt="">
 							<p class="weiyuanhui text-align-center" style="border-bottom: 0;">支部荣耀</p>
-							<div class="swiper-container" style="height: 6.58rem;overflow: hidden;">
-								<div class="swiper-wrapper" id="listClick4">
-									<div class="swiper-slide swiper-div">
-										<div style="padding-top: 0.45rem;">
-											<img style="width: 3.42rem;" src="../img/31.png" alt="">
-										</div>
-										<div style="padding-top: 0.45rem;">
-											<img style="width: 3.42rem;" src="../img/30.png" alt="">
-										</div>
-									</div>
-									<div class="swiper-slide swiper-div">
-										<div style="padding-top: 0.45rem;">
-											<img style="width: 3.42rem;" src="../img/31.png" alt="">
-										</div>
-										<div style="padding-top: 0.45rem;">
-											<img style="width: 3.42rem;" src="../img/30.png" alt="">
-										</div>
+							<div class="" style="height: 6.58rem;overflow: hidden;">
+								<div class="swiper-container" style="height: 3.29rem;">
+
+
+									<div class="swiper-wrapper" id="listClick4">
+
+
+
 									</div>
 								</div>
 
@@ -91,29 +83,7 @@
 		var html1 = '';
 		var article_cat = '';
 
-		var Headertitle = '';
-		switch (article_cat) {
-			case '1410':
-				Headertitle = '党章党规';
-				break;
-			case '1408':
-				Headertitle = '品牌案例';
-				break;
-			case '1405':
-				Headertitle = '楼宇党建';
-				break;
-			case '1406':
-				Headertitle = '联建生态圈';
-				break;
-			case '1409':
-				Headertitle = '群团建设';
-				break;
 
-			default:
-				Headertitle = '楼宇党建';
-		}
-
-		$('.header-text').html(Headertitle);
 		$.ajax({
 			url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/ArticleList',
 			method: 'POST',
@@ -132,7 +102,7 @@
 				arr = jsondata[2];
 
 				$.each(arr,function(index,item){
-					console.log(item);
+
 
 					html1 += "<a href=\"../dangzhangdanggui/dangzhangdanggui-xiangqing.html?article_id="+item['article_id']+"&article_cat="+article_cat+"\">" +
 							"<li>"+item['article_title']+"</li></a>\n";
@@ -149,7 +119,7 @@
 			}
 		})
 
-
+var html = '';
 		$.ajax({
 			url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/ArticleList',
 			method: 'POST',
@@ -171,10 +141,16 @@
 				$.each(arr,function(index,item){
 					console.log(item);
 
-
+					html += "<div class=\"swiper-slide swiper-div\">\n" +
+							"<div style=\"padding-top: 0.45rem;\">\n" +
+							"<img style=\"width: 3.42rem;\" src=\""+item['article_thumb']+"\" alt=\"\">\n" +
+							"</div>\n" +
+							"\n" +
+							"</div>";
 
 				})
 
+				$(".swiper-wrapper").html(html);
 
 
 

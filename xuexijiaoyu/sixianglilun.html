@@ -88,6 +88,7 @@
 
 				arr = jsondata[2];
 				material_cat = 5;
+
 				$.each(arr,function(index,item){
 					console.log(item);
 
@@ -109,7 +110,9 @@
 
 					html1 += html+html2+html3;
 				})
-
+				if(arr.length%3 != 0){
+					html1 += "<div></div>";
+				}
 				$("#listClick").html(html1);
 
 
@@ -136,7 +139,7 @@
 				jsondata = Object.values(jsondata);
 
 				arr = jsondata[2];
-
+				material_cat = 6;
 				$.each(arr,function(index,item){
 					console.log(item);
 
@@ -159,7 +162,9 @@
 					html5 += html+html2+html3;
 				})
 
-
+				if(arr.length%3 != 0){
+					html5 += "<div></div>";
+				}
 				$("#listClick2").html(html5);
 
 
