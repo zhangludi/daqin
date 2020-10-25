@@ -39,21 +39,47 @@
         </div>
         <div class="scroll-font">
             <div class="dangzhibu-margin" style="margin-top: 0.8rem;" id="listClick">
-                <div data-url="dangyuankaoxue2.html" class="dangjiangongjian-div new-dangyuankaoxue-list-div">题库一</div>
-                <div data-url="dangyuankaoxue2-01.html" class="dangjiangongjian-div new-dangyuankaoxue-list-div">题库二</div>
-                <div data-url="dangyuankaoxue2.html" class="dangjiangongjian-div new-dangyuankaoxue-list-div">题库三</div>
-                <div data-url="dangyuankaoxue2.html" class="dangjiangongjian-div new-dangyuankaoxue-list-div">题库四</div>
-                <div data-url="dangyuankaoxue2.html" class="dangjiangongjian-div new-dangyuankaoxue-list-div">题库五</div>
-                <div data-url="dangyuankaoxue2.html" class="dangjiangongjian-div new-dangyuankaoxue-list-div">题库六</div>
-                <div data-url="dangyuankaoxue2.html" class="dangjiangongjian-div new-dangyuankaoxue-list-div">题库七</div>
-                <div data-url="dangyuankaoxue2.html" class="dangjiangongjian-div new-dangyuankaoxue-list-div">题库八</div>
-                <div data-url="dangyuankaoxue2.html" class="dangjiangongjian-div new-dangyuankaoxue-list-div">题库九</div>
-                <div data-url="dangyuankaoxue2.html" class="dangjiangongjian-div new-dangyuankaoxue-list-div">题库十</div>
-            </div>
+                </div>
         </div>
     </div>
 </div>
 </body>
 <script src="../js/jquery-1.11.3.min.js"></script>
 <script src="../js/public.js"></script>
+<script src="../js/common.js"></script>
+
+<script>
+
+    var html = '';
+    $.ajax({
+        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/ExemList',
+        method: 'POST',
+        async : true,
+        tradition:true,
+        crossDomain: true,
+        dataType: 'json',
+
+        success: function(jsondata){
+
+            jsondata = Object.values(jsondata);
+            console.log(jsondata);
+
+            arr = jsondata[2];
+            $.each(arr,function(index,item){
+                html += "        " +
+                    "        <div data-url=\"dangyuankaoxue2.html?exam_id="+item['exam_id']+"\" class=\"dangjiangongjian-div new-dangyuankaoxue-list-div\">" +
+                    ""+item['exam_title']+"</div>\n";
+            })
+        $("#listClick").html(html);
+
+
+
+        },
+        failure: function (data) {
+            console.log('Failure');
+        }
+    })
+
+
+</script>
 </html>

@@ -121,6 +121,32 @@
 </body>
 <script src="../js/jquery-1.11.3.min.js"></script>
 <script src="../js/public.js"></script>
+<script src="../js/common.js"></script>
+
+<script>
+
+    var html = '';
+    $.ajax({
+        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/ExemList',
+        method: 'POST',
+        async : true,
+        tradition:true,
+        crossDomain: true,
+        dataType: 'json',
+
+        success: function(jsondata){
+
+            jsondata = Object.values(jsondata);
+            console.log(jsondata);
+
+        },
+        failure: function (data) {
+            console.log('Failure');
+        }
+    })
+
+
+</script>
 <script type="text/javascript">
     //单选
     /* $("input[name='radio']").click(function(){
