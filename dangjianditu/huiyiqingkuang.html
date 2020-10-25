@@ -50,24 +50,14 @@
 </body>
 <script src="../js/jquery-1.11.3.min.js"></script>
 <script src="../js/public.js"></script>
+<script src="../js/common.js"></script>
 <script>
     var meeting_type = getQueryVariable('meeting_type');
     var maxLength = 200;
     var party_no = getQueryVariable('party_no');
     var html1 = '';
     var Headertitle = '';
-    switch (meeting_type) {
-        case '2001':
-            Headertitle = '党委会';
-            break;
-        case '2002':
-            Headertitle = '中心组学习';
-            break;
-        case '2003':
-            Headertitle = '民主生活会';
-            break;
-
-    }
+    Headertitle = getPartyNo(meeting_type);
 
     $('.header-text').html(Headertitle);
     $('.text-align-center').html(Headertitle);

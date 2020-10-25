@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>党委会</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/rem.js"></script>
+</head>
+<body>
+<div class="background-font background-font2">
+    <div class="position">
+        <div class="dangzhangdanggui-header box">
+            <div class="dangzhangdanggui-header-left box box-align-items box-justify-content">
+                <div class="header-text">党委会</div>
+            </div>
+            <div class="dangzhangdanggui-header-right">
+                <div class="box" id="backBtn">
+                    <img src="../img/fanhui.png">
+                    <div class="dangzhangdanggui-header-right-div">返回上一级</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-font">
+            <p class="dangzhangdanggui-xiangqing-title text-align-center">大横琴集团总部党支部</p>
+            <div class="dividing-line"></div>
+            <div class="dangzhangdanggui-xiangqing-title2">
+                <p  class="dangzhangdanggui-xiangqing-title2-content">　
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/common.js"></script>
+
+<script>
+    var meeting_no = getQueryVariable('meeting_no');
+    var meeting_type = getQueryVariable('meeting_type');
+    Headertitle = getPartyNo(meeting_type);
+    $('.header-text').html(Headertitle);
+
+    var html = '';
+    $.ajax({
+        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/MeetingInfoWithNo',
+        method: 'POST',
+        async : true,
+        tradition:true,
+        crossDomain: true,
+
+        dataType: 'json',
+        data: {meeting_no:meeting_no},
+        success: function(jsondata){
+
+
+            if(jsondata.status == 0){
+                return false;
+            }
+            jsondata = Object.values(jsondata);
+
+            arr = jsondata[2];
+          console.log(arr);
+            $(".dangzhangdanggui-xiangqing-title2-content").html(arr['memo']);
+            $(".dangzhangdanggui-xiangqing-title").html(arr['meeting_name']);
+
+
+        },
+        failure: function (data) {
+            console.log('Failure');
+        }
+    })
+
+
+</script>
+</html>

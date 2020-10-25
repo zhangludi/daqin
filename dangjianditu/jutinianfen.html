@@ -50,6 +50,7 @@
 </body>
 <script src="../js/jquery-1.11.3.min.js"></script>
 <script src="../js/public.js"></script>
+<script src="../js/common.js"></script>
 <script>
 
     var meeting_type = getQueryVariable('meeting_type');
@@ -58,25 +59,12 @@
     var year = getQueryVariable('year');
     var html1 = '';
     var Headertitle = '';
-    switch (meeting_type) {
-        case '2000':
-            Headertitle = '党委会';
-            break;
-        case '2001':
-            Headertitle = '中心组学习';
-            break;
-        case '2002':
-            Headertitle = '民主生活会';
-            break;
-
-    }
+    Headertitle = getPartyNo(meeting_type);
 
     $('.weiyuanhui').html(Headertitle);
     $('.header-text').html(Headertitle);
 
-    party_no = 101;
-    meeting_type = 2001;
-    year = 2019;
+
     $.ajax({
         url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/MeetingInfo',
         method: 'POST',
@@ -89,12 +77,12 @@
 
             jsondata = Object.values(jsondata);
             arr = jsondata[2];
-
+console.log(arr);
             var html = '<div class="xuexifenbu-list2-top box box-align-items2">',
                 html2 ='<div class="xuexifenbu-list2-bottom box">';
             $.each(arr,function(index,item){
                 var hd = Number(item['num'])/maxLength*5;
-                html +='<div class="xuexifenbu-list-top-jindutiao2" onclick="itemClick('+item['meeting_start_time']+','+party_no+','+meeting_type+')"   data-url="jutinianfen.html?party_no='+party_no+'&meeting_type='+meeting_type+'&yuefen='+item["meeting_start_time"]+' ">'
+                html +='<div class="xuexifenbu-list-top-jindutiao2" onclick="itemClick(\''+item['meeting_start_time']+'\','+party_no+','+meeting_type+')" >'
                     + item['num'] +
                     '<p class="xuexifenbu-list-top-jindutiao2-p" style="height:'+ hd +'rem;"></p>'+
                     '</div>';
@@ -117,22 +105,13 @@
 
 
 
-    function getQueryVariable(variable)
-    {
-        var query = window.location.search.substring(1);
-        var vars = query.split("&");
-        for (var i=0;i<vars.length;i++) {
-            var pair = vars[i].split("=");
-            if(pair[0] == variable){return pair[1];}
-        }
-        return(false);
-    }
-
 
 
     //点击年份事件
     function itemClick(yuefen,party_no,meeting_type){
-        location.href = 'huiyiqingkuangxiangqing.html?party_no='+party_no+'&meeting_type='+meeting_type+'&yuefen='+yuefen+'';
+
+        location.href = 'huiyiqingkuangxiangqing.html?party_no='+party_no+'&yuefen='+yuefen+'&meeting_type='+meeting_type+'';
+       // location.href = 'huiyiqingkuangxiangqing.html?party_no='+party_no+'&yuefen=2019-1&meeting_type='+meeting_type+'';
     }
 
 

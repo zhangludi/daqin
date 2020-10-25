@@ -101,3 +101,22 @@ function getDiplomaId(diploma_id){
     }
     return Headertitle;
 }
+
+//获取会议
+function getPartyNo(party_no){
+    var Headertitle = '';
+
+    switch (party_no) {
+        case '2001':
+            Headertitle = '党委会';
+            break;
+        case '2002':
+            Headertitle = '中心组学习';
+            break;
+        case '2003':
+            Headertitle = '民主生活会';
+            break;
+
+    }
+    return Headertitle;
+}
