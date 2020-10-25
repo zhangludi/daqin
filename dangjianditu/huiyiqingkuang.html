@@ -70,6 +70,7 @@
     }
 
     $('.header-text').html(Headertitle);
+    $('.text-align-center').html(Headertitle);
 
     party_no = 101;
     meeting_type = 2001;
@@ -128,8 +129,8 @@
 
 
 	//点击年份事件
-	function itemClick(yuefen,party_no,meeting_type){
-		location.href = 'jutinianfen.html?party_no='+party_no+'&meeting_type='+meeting_type+'&yuefen='+yuefen+'';
+	function itemClick(year,party_no,meeting_type){
+		location.href = 'jutinianfen.html?party_no='+party_no+'&meeting_type='+meeting_type+'&year='+year+'';
 	}
 </script>
 

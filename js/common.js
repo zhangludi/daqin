@@ -67,3 +67,37 @@ function getQueryVariable(variable)
     }
     return(false);
 }
+
+
+
+
+function getDiplomaId(diploma_id){
+    var Headertitle = '';
+    switch (diploma_id) {
+        case '11':
+            Headertitle = '博士';
+            break;
+        case '12':
+            Headertitle = '硕士';
+            break;
+
+        case '13':
+            Headertitle = '研究生';
+            break;
+
+        case '14':
+            Headertitle = '本科';
+            break;
+        case '15':
+            Headertitle = '大专';
+            break;
+        case '17':
+            Headertitle = '高中';
+            break;
+
+
+        default:
+            Headertitle = '博士';
+    }
+    return Headertitle;
+}

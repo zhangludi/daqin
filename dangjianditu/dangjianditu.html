@@ -154,27 +154,27 @@
 								<img class="dangjianditu-img" src="../img/01.png" alt="">
 								<p class="dangjianditu-content-right-title text-align-center">党员发展情况</p>
 								<div id="listClick3" class="dangjianditu-right-bottom-list box" style="margin-top: 0.35rem;">
-									<div data-url="zhengshidangyuan.html">
+									<div onclick="getDetail('zhengshi')">
 										<p>正式党员</p>
 										<p id="communist_num_21">0</p>
 										<p>（单位/人）</p>
 									</div>
-									<div data-url="fazhanqingkuangxiangqing01.html">
+									<div onclick="getDetail('17')">
 										<p>预备党员</p>
 										<p id="communist_num_17">0</p>
 										<p>（单位/人）</p>
 									</div>
-									<div data-url="fazhanqingkuangxiangqing02.html">
+									<div onclick="getDetail('15')">
 										<p>发展对象</p>
 										<p id="communist_num_15">0</p>
 										<p>（单位/人）</p>
 									</div>
-									<div data-url="fazhanqingkuangxiangqing03.html">
+									<div onclick="getDetail('13')">
 										<p>入党积极分子</p>
 										<p id="communist_num_13">0</p>
 										<p>（单位/人）</p>
 									</div>
-									<div data-url="fazhanqingkuangxiangqing04.html">
+									<div  onclick="getDetail('11')">
 										<p>入党申请人</p>
 										<p id="communist_num_11">0</p>
 										<p>（单位/人）</p>
@@ -246,7 +246,25 @@
 			console.log(returnData);
 		});
 */
+	party_no = 100;
+	function getDetail(index){
+		if(index == 'zhengshi'){
+			location.href = 'zhengshidangyuan.html?party_no='+party_no+'&type='+index+'';
 
+		}else if(index=='17'){
+			location.href = 'fazhanqingkuangxiangqing17.html?party_no='+party_no+'&type='+index+'';
+
+		}else if(index=='15'){
+			location.href = 'fazhanqingkuangxiangqing15.html?party_no='+party_no+'&type='+index+'';
+
+		}else if(index=='13'){
+			location.href = 'fazhanqingkuangxiangqing13.html?party_no='+party_no+'&type='+index+'';
+
+		}else if(index=='11'){
+			location.href = 'fazhanqingkuangxiangqing11.html?party_no='+party_no+'&type='+index+'';
+
+		}
+	}
 	</script>
 
 </html>
