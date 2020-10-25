@@ -42,18 +42,8 @@
                     <img class="dangjianditu-img" src="../img/01.png" alt="">
                     <p class="dangjianditu-content-right-title text-align-center" style="margin-bottom: 0.5rem;">党支部</p>
                     <div class="box box-wrap box-justify-content dangzhibu-margin" id="listClick">
-                        <div data-url="dangzongzhixiangqing.html" class="dangjiangongjian-div dangzongzhi-div">大横琴集团总部党支部</div>
-                        <div data-url="dangzongzhixiangqing.html" class="dangjiangongjian-div dangzongzhi-div">大横琴科技公司党支部</div>
-                        <div data-url="dangzongzhixiangqing.html" class="dangjiangongjian-div dangzongzhi-div">大横琴口岸公司党支部</div>
-                        <div data-url="dangzongzhixiangqing.html" class="dangjiangongjian-div dangzongzhi-div">大横琴泛旅游公司党支部</div>
-                        <div data-url="dangzongzhixiangqing.html" class="dangjiangongjian-div dangzongzhi-div">大横琴城市新中心公司党支部</div>
-                        <div data-url="dangzongzhixiangqing.html" class="dangjiangongjian-div dangzongzhi-div">大横琴城资公司党支部</div>
-                        <div data-url="dangzongzhixiangqing1.html" class="dangjiangongjian-div dangzongzhi-div">股份公司第一党支部</div>
-                        <div data-url="dangzongzhixiangqing1.html" class="dangjiangongjian-div dangzongzhi-div">股份公司第二党支部</div>
-                        <div data-url="dangzongzhixiangqing2.html" class="dangjiangongjian-div dangzongzhi-div">置业公司第一党支部</div>
-                        <div data-url="dangzongzhixiangqing2.html" class="dangjiangongjian-div dangzongzhi-div">置业公司第二党支部</div>
-                        <div data-url="dangzongzhixiangqing.html" class="dangjiangongjian-div dangzongzhi-div">检测中心党支部</div>
-                    </div>
+
+                          </div>
                 </div>
             </div>
         </div>
@@ -62,4 +52,69 @@
 </body>
 <script src="../js/jquery-1.11.3.min.js"></script>
 <script src="../js/public.js"></script>
+
+<script src="../js/common.js"></script>
+<script>
+    /*	$.ajax({
+            url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/AreaIndex',
+            async : true,
+            crossDomain: true,
+            type: 'POST',
+            success: function(jsondata){
+                console.log('success');
+            },
+            failure: function (data) {
+                console.log('Failure');
+            }
+        })*/
+
+    //1集团党委 2党总支 3党支部
+    var html = '';
+    $.ajax({
+        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/PartyListWithType',
+        method: 'POST',
+        async : true,
+        tradition:true,
+        crossDomain: true,
+
+        dataType: 'json',
+        data:{type_id:3},
+        success: function(jsondata){
+
+            jsondata = Object.values(jsondata);
+            console.log(jsondata);
+            if(jsondata.status == 0){
+                return false;
+            }
+            jsondata = Object.values(jsondata);
+
+            arr = jsondata[2];
+            $.each(arr,function(index,item){
+                party_name = item['party_name'].substring(0,15);
+                html += "       <div data-url=\"dangzongzhixiangqing.html?party_no="+item['party_no']+"\" class=\"dangjiangongjian-div dangzongzhi-div\">"+party_name+"" +
+                    "</div>\n" +
+                    "            ";
+
+            })
+
+            $("#listClick").html(html);
+
+        },
+        failure: function (data) {
+            console.log('Failure');
+        }
+    })
+
+    /*	$(function(){
+            //var data= "{'userCode':'3','roleCode':'3'}";
+            //var json = eval("("+data+")");
+            var json = '';
+
+            var returnData =  global_ajax_method("POST", ZL.url.api.dangjianditu,"json","application/json;charset=utf-8",json);//调用函数
+
+            console.log(returnData);
+        });
+*/
+
+</script>
 </html>

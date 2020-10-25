@@ -41,10 +41,7 @@
                         <img class="dangjianditu-img" src="../img/01.png" alt="">
                         <p class="dangjianditu-content-right-title text-align-center" style="margin-bottom: 1rem;">党总支</p>
                         <div id="listClick">
-                            <div data-url="dangzongzhixiangqing1.html" class="dangjiangongjian-div dangzongzhi-div">大横琴股份公司党总支
-</div>
-                            <div data-url="dangzongzhixiangqing2.html" class="dangjiangongjian-div dangzongzhi-div">大横琴置业公司党总支
-</div>
+
                         </div>
                     </div>
                 </div>
@@ -54,4 +51,70 @@
 </body>
 <script src="../js/jquery-1.11.3.min.js"></script>
 <script src="../js/public.js"></script>
+
+<script src="../js/common.js"></script>
+<script>
+    /*	$.ajax({
+            url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/AreaIndex',
+            async : true,
+            crossDomain: true,
+            type: 'POST',
+            success: function(jsondata){
+                console.log('success');
+            },
+            failure: function (data) {
+                console.log('Failure');
+            }
+        })*/
+
+    //1集团党委 2党总支 3党支部
+    var html = '';
+    $.ajax({
+        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/PartyListWithType',
+        method: 'POST',
+        async : true,
+        tradition:true,
+        crossDomain: true,
+
+        dataType: 'json',
+        data:{type_id:2},
+        success: function(jsondata){
+
+            jsondata = Object.values(jsondata);
+            console.log(jsondata);
+            if(jsondata.status == 0){
+                return false;
+            }
+            jsondata = Object.values(jsondata);
+
+            arr = jsondata[2];
+            $.each(arr,function(index,item){
+                console.log(item);
+                party_name = item['party_name'].substring(0,15);
+                html += "       <div data-url=\"dangzongzhixiangqing.html?party_no="+item['party_no']+"\" class=\"dangjiangongjian-div dangzongzhi-div\">"+party_name+"" +
+                    "</div>\n" +
+                    "            ";
+
+            })
+
+            $("#listClick").html(html);
+
+        },
+        failure: function (data) {
+            console.log('Failure');
+        }
+    })
+
+    /*	$(function(){
+            //var data= "{'userCode':'3','roleCode':'3'}";
+            //var json = eval("("+data+")");
+            var json = '';
+
+            var returnData =  global_ajax_method("POST", ZL.url.api.dangjianditu,"json","application/json;charset=utf-8",json);//调用函数
+
+            console.log(returnData);
+        });
+*/
+
+</script>
 </html>

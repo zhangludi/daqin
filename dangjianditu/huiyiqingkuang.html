@@ -57,13 +57,13 @@
     var html1 = '';
     var Headertitle = '';
     switch (meeting_type) {
-        case '2000':
+        case '2001':
             Headertitle = '党委会';
             break;
-        case '2001':
+        case '2002':
             Headertitle = '中心组学习';
             break;
-        case '2002':
+        case '2003':
             Headertitle = '民主生活会';
             break;
 
@@ -72,8 +72,7 @@
     $('.header-text').html(Headertitle);
     $('.text-align-center').html(Headertitle);
 
-    party_no = 101;
-    meeting_type = 2001;
+
     $.ajax({
         url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/MeetingList',
         method: 'POST',

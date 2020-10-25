@@ -66,37 +66,13 @@
 							<p class="weiyuanhui text-align-center">领导班子</p>
 							<div class="scroll-font scroll-font3" style="overflow-y:hidden;">
 								<div class="box box-wrap box-justify-content dangzongzhixiangqing-center-list" id="duty_list_0">
-									<div class="dangzongzhixiangqing-center-div" data-url="chengyuanxinxi.html">
-										<p class="dangzongzhixiangqing-center-div-p" >党委书记</p>
-										<img src="../img/04.png" alt="">
-										<p>田伟</p>
-									</div>
-								</div>
-								<div class="box box-wrap box-justify-content3 dangzongzhixiangqing-center-list" id="listClick2">
-									<div class="dangzongzhixiangqing-center-div" data-url='chengyuanxinxi02.html'>
-										<p class="dangzongzhixiangqing-center-div-p">党委副书记/纪委书记</p>
-										<img src="../img/04.png" alt="">
-										<p>邓峰</p>
-									</div>
+
 								</div>
 								<div class="box box-wrap box-justify-content3 dangzongzhixiangqing-center-list" id="listClick2">
 
-									<div class="dangzongzhixiangqing-center-div" data-url='chengyuanxinxi04.html'>
-										<p class="dangzongzhixiangqing-center-div-p">党委委员</p>
-										<img src="../img/04.png" alt="">
-										<p>钟丽红</p>
-									</div>
+								</div>
+								<div class="box box-wrap box-justify-content3 dangzongzhixiangqing-center-list" id="listClick3">
 
-									<div class="dangzongzhixiangqing-center-div" data-url='chengyuanxinxi05.html'>
-										<p class="dangzongzhixiangqing-center-div-p">党委委员</p>
-										<img src="../img/04.png" alt="">
-										<p>李浩东</p>
-									</div>
-									<div class="dangzongzhixiangqing-center-div" data-url='chengyuanxinxi03.html'>
-										<p class="dangzongzhixiangqing-center-div-p">党委委员</p>
-										<img src="../img/04.png" alt="">
-										<p>肖时辉</p>
-									</div>
 
 								</div>
 							</div>
@@ -107,15 +83,15 @@
 							<img class="dangjianditu-img" style="width:2.58rem;" src="../img/01.png" alt="">
 							<p class="weiyuanhui text-align-center">会议情况</p>
 							<div class="weiyuanhui-left-lsit" style="margin-top: 1.07rem;" id="listClick3">
-								<div class="box box-wrap text-align-center box-align-items" data-url="huiyiqingkuang.html?party_no=100&meeting_type=2000">
+								<div class="box box-wrap text-align-center box-align-items" data-url="huiyiqingkuang.html?party_no=100&meeting_type=2001">
 									<p style="width:2.2rem">党委会</p>
 									<p id="metting_num_0">0</p>
 								</div>
-								<div class="box box-wrap text-align-center box-align-items" data-url="huiyiqingkuang.html?party_no=100&meeting_type=2001">
+								<div class="box box-wrap text-align-center box-align-items" data-url="huiyiqingkuang.html?party_no=100&meeting_type=2002">
 									<p style="width:2.2rem">中心组学习</p>
 									<p id="metting_num_1">0</p>
 								</div>
-								<div class="box box-wrap text-align-center box-align-items" data-url="huiyiqingkuang.html?party_no=100&meeting_type=2002">
+								<div class="box box-wrap text-align-center box-align-items" data-url="huiyiqingkuang.html?party_no=100&meeting_type=2003">
 									<p style="width:2.2rem">民主生活会</p>
 									<p id="metting_num_2">0</p>
 								</div>
@@ -165,13 +141,54 @@
 
 
 				//领导班子
-				duty_list = jsondata[2]['duty_list'];
+				communist_data = jsondata[2]['duty_list'];
 				console.log(duty_list);
-				$("#duty_list_0 div").attr('data-url',"chengyuanxinxi.html?communist_id="+duty_list['communist_id']);
-				$("#duty_list_0 p:first").innerHTML = duty_list['communist_id'];
-				$("#duty_list_0 img").innerHTML = duty_list['communist_id'];
-				$("#duty_list_0 p:last").innerHTML = duty_list['communist_id'];
+				if(communist_data == ''){
+					return false;
+				}
+				var html = '';
+				var html1 = '';
+				var html2 = '';
+				$.each(communist_data,function(index,item){
+					if(item['no'] == 103){
+						$.each(item['communist_list'],function(x,i){
+							html += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
+									"<p class=\"dangzongzhixiangqing-center-div-p\">党总书记</p>\n" +
+									"<img src=\"../img/04.png\" alt=\"\">\n" +
+									"<p>"+i['communist_name']+"</p>\n" +
+									"\n" +
+									"</div>";
+						})
+					}
 
+					// //党总支副书记,支部书记
+					// if(item['no'] == 104 || item['no'] == 201 ){
+					// 	$.each(item['communist_list'],function(x,i){
+					// 		html += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
+					// 				"<p class=\"dangzongzhixiangqing-center-div-p\">党总支副书记/支部书记</p>\n" +
+					// 				"<img src=\"../img/04.png\" alt=\"\">\n" +
+					// 				"<p>"+i['communist_name']+"</p>\n" +
+					// 				"\n" +
+					// 				"</div>";
+					// 	})
+					// }
+
+					if(item['no'] != 103 || item['no'] == 104 || item['no'] == 201 ){
+						$.each(item['communist_list'],function(x,i){
+							html1 += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
+									"<p class=\"dangzongzhixiangqing-center-div-p\">支部成员</p>\n" +
+									"<img src=\"../img/04.png\" alt=\"\">\n" +
+									"<p>"+i['communist_name']+"</p>\n" +
+									"\n" +
+									"</div>";
+						})
+					}
+
+				})
+
+				$("#listClick").html(html);
+				$("#listClick2").html(html2);
+				$("#listClick3").html(html1);
 
 			},
 			failure: function (data) {
@@ -179,16 +196,6 @@
 			}
 		})
 
-		function getQueryVariable(variable)
-		{
-			var query = window.location.search.substring(1);
-			var vars = query.split("&");
-			for (var i=0;i<vars.length;i++) {
-				var pair = vars[i].split("=");
-				if(pair[0] == variable){return pair[1];}
-			}
-			return(false);
-		}
 
 	</script>
 

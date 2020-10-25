@@ -18,10 +18,10 @@
         </script>
 
     <![endif]-->
-		<link rel="stylesheet" href="../../css/public.css">
-		<link rel="stylesheet" href="../../css/index.css">
-		<link rel="stylesheet" href="../../css/swiper.min.css">
-		<script src="../../js/rem.js"></script>
+		<link rel="stylesheet" href="../css/public.css">
+		<link rel="stylesheet" href="../css/index.css">
+		<link rel="stylesheet" href="../css/swiper.min.css">
+		<script src="../js/rem.js"></script>
 	</head>
 	<body>
 		<div class="background-font background-font2">
@@ -33,7 +33,7 @@
 					</div>
 					<div class="dangzhangdanggui-header-right">
 						<div class="box" id="backBtn">
-							<img src="../../img/fanhui.png">
+							<img src="../img/fanhui.png">
 							<div class="dangzhangdanggui-header-right-div">返回上一级</div>
 						</div>
 					</div>
@@ -41,59 +41,59 @@
 				<div class="box box-justify-content2">
 					<div class="border-font" style="width:4.72rem;height: 7.75rem;">
 						<div class="border-font-div">
-							<img class="dangjianditu-img" style="width:2.58rem;" src="../../img/01.png" alt="">
+							<img class="dangjianditu-img" style="width:2.58rem;" src="../img/01.png" alt="">
 							<p class="weiyuanhui text-align-center">党员发展情况</p>
 							<div id="listClick5" class="dangjianditu-right-bottom-list box box-wrap box-justify-content dangzongzhixiangqing-list"
 							 style="margin-top: 0.35rem;">
-								<div data-url="zhengshidangyuan.html">
+								<div onclick="getDetail('zhengshi')">
 									<p>正式党员</p>
-									<p>78</p>
+									<p id="communist_num_21">0</p>
 									<p>（单位/人）</p>
 								</div>
-								<div data-url="fazhanqingkuangxiangqing01.html">
+								<div onclick="getDetail('17')">
 									<p>预备党员</p>
-									<p>0</p>
+									<p id="communist_num_17">0</p>
 									<p>（单位/人）</p>
 								</div>
-								<div data-url="fazhanqingkuangxiangqing02.html">
+								<div onclick="getDetail('15')">
 									<p>发展对象</p>
-									<p>2</p>
+									<p id="communist_num_15">0</p>
 									<p>（单位/人）</p>
 								</div>
-								<div data-url="fazhanqingkuangxiangqing03.html">
+								<div onclick="getDetail('13')">
 									<p>入党积极分子</p>
-									<p>5</p>
+									<p id="communist_num_13">0</p>
 									<p>（单位/人）</p>
 								</div>
-								<div data-url="fazhanqingkuangxiangqing04.html">
+								<div  onclick="getDetail('11')">
 									<p>入党申请人</p>
-									<p>2</p>
+									<p id="communist_num_11">0</p>
 									<p>（单位/人）</p>
 								</div>
 							</div>
 							<div class="dangzongzhixiangqing-left-bottom">
 								<div class="dividing-line2"></div>
-								<img class="dangjianditu-img" style="width:2.58rem;" src="../../img/01.png" alt="">
+								<img class="dangjianditu-img" style="width:2.58rem;" src="../img/01.png" alt="">
 								<p class="weiyuanhui text-align-center">三会一课</p>
 								<div id="listClick6" class="dangjianditu-right-bottom-list box box-wrap box-justify-content dangzongzhixiangqing-left-bottom-margin">
-									<div data-url="zhibudangyuandahui.html">
+									<div class="meetting_detail">
 										<p>支部党员大会</p>
-										<p>12</p>
+										<p>0</p>
 										<p>（单位/人）</p>
 									</div>
-									<div data-url="zhibudangyuandahui.html">
+									<div class="meetting_detail">
 										<p>支委会</p>
-										<p>4</p>
+										<p>0</p>
 										<p>（单位/人）</p>
 									</div>
-									<div data-url="zhibudangyuandahui.html">
+									<div class="meetting_detail">
 										<p>党委会</p>
-										<p>12</p>
+										<p>0</p>
 										<p>（单位/人）</p>
 									</div>
-									<div data-url="zhibudangyuandahui.html">
+									<div class="meetting_detail">
 										<p>党课</p>
-										<p>4</p>
+										<p>0</p>
 										<p>（单位/人）</p>
 									</div>
 								</div>
@@ -102,77 +102,55 @@
 					</div>
 					<div class="border-font" style="width:7.3rem;height: 7.75rem;">
 						<div class="border-font-div">
-							<img class="dangjianditu-img" style="width:3.74rem;" src="../../img/01.png" alt="">
+							<img class="dangjianditu-img" style="width:3.74rem;" src="../img/01.png" alt="">
 							<p class="weiyuanhui text-align-center">支部成员</p>
 							<div class="scroll-font scroll-font3">
+
 								<div class="box box-wrap box-justify-content dangzongzhixiangqing-center-list" id="listClick">
-									<div class="dangzongzhixiangqing-center-div" data-url="chengyuanxinxi-001.html">
-										<p class="dangzongzhixiangqing-center-div-p">党总书记</p>
-										<img src="../../img/04.png" alt="">
-										<p>钟丽红</p>
-									</div>
+
+
 								</div>
+
 								<div class="box box-wrap box-justify-content3 dangzongzhixiangqing-center-list" id="listClick2">
-									<div class="dangzongzhixiangqing-center-div" data-url="chengyuanxinxi3.html">
-										<p class="dangzongzhixiangqing-center-div-p">组织委员</p>
-										<img src="../../img/04.png" alt="">
-										<p>梁志宏</p>
-									</div>
-									<div class="dangzongzhixiangqing-center-div" data-url=''>
-										<p class="dangzongzhixiangqing-center-div-p">宣传委员
-										</p>
-										<img src="../../img/04.png" alt="">
-										<p>董印雷</p>
-									</div>
-									<div class="dangzongzhixiangqing-center-div" data-url=''>
-										<p class="dangzongzhixiangqing-center-div-p">纪律委员
-										</p>
-										<img src="../../img/04.png" alt="">
-										<p>李宝敏</p>
-									</div>
-									<div class="dangzongzhixiangqing-center-div" data-url=''>
-										<p class="dangzongzhixiangqing-center-div-p">群工委员
-										</p>
-										<img src="../../img/04.png" alt="">
-										<p>陈珊</p>
-									</div>
+
+
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="border-font" style="width:4.71rem;height: 7.75rem;">
 						<div class="border-font-div">
-							<img class="dangjianditu-img" style="width:2.58rem;" src="../../img/01.png" alt="">
+							<img class="dangjianditu-img" style="width:2.58rem;" src="../img/01.png" alt="">
 							<p class="weiyuanhui text-align-center" style="border-bottom: 0;">支部活动</p>
 							<div class="swiper-container" style="height: 6.58rem;">
 								<div class="swiper-wrapper" id="listClick4">
 									<div class="swiper-slide swiper-div" data-url="dangjiangongjian.html">
 										<div>
-											<img src="../../img/10.png" alt="">
+											<img src="../img/10.png" alt="">
 											<p>大横琴集团党委组织召开庆祝 <br>中国共产党成立98周年暨表彰大会。</p>
 										</div>
 										<div>
-											<img src="../../img/11.png" alt="">
+											<img src="../img/11.png" alt="">
 											<p>大横琴集团党委组织党员干部赴井冈山开展<br> “不忘初心、牢记使命”主题教育专题培训班。</p>
 										</div>
 									</div>
 									<div class="swiper-slide swiper-div" data-url="dangjiangongjian.html">
 										<div>
-											<img src="../../img/10.png" alt="">
+											<img src="../img/10.png" alt="">
 											<p>大横琴集团党委组织召开庆祝 <br>中国共产党成立98周年暨表彰大会。</p>
 										</div>
 										<div>
-											<img src="../../img/11.png" alt="">
+											<img src="../img/11.png" alt="">
 											<p>大横琴集团党委组织党员干部赴井冈山开展<br> “不忘初心、牢记使命”主题教育专题培训班。</p>
 										</div>
 									</div>
 									<div class="swiper-slide swiper-div" data-url="dangjiangongjian.html">
 										<div>
-											<img src="../../img/10.png" alt="">
+											<img src="../img/10.png" alt="">
 											<p>大横琴集团党委组织召开庆祝 <br>中国共产党成立98周年暨表彰大会。</p>
 										</div>
 										<div>
-											<img src="../../img/11.png" alt="">
+											<img src="../img/11.png" alt="">
 											<p>大横琴集团党委组织党员干部赴井冈山开展<br> “不忘初心、牢记使命”主题教育专题培训班。</p>
 										</div>
 									</div>
@@ -185,9 +163,122 @@
 			</div>
 		</div>
 	</body>
-	<script src="../../js/jquery-1.11.3.min.js"></script>
-	<script src="../../js/swiper.min.js"></script>
-	<script src="../../js/public.js"></script>
+	<script src="../js/jquery-1.11.3.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/public.js"></script>
+	<script src="../js/common.js"></script>
+
+	<script>
+		var party_no = getQueryVariable('party_no');
+		$.ajax({
+			url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/PartyInfo',
+			method: 'POST',
+			async : true,
+			tradition:true,
+			crossDomain: true,
+
+			dataType: 'json',
+			data: {party_no:party_no},
+			success: function(jsondata){
+
+				jsondata = Object.values(jsondata);
+				console.log(jsondata);
+				communist_num = jsondata[2]['communist_num'];
+				//党员发展情况
+				document.getElementById('communist_num_11').innerHTML = communist_num[11]['num'];
+				document.getElementById('communist_num_13').innerHTML = communist_num[13]['num'];
+				document.getElementById('communist_num_15').innerHTML = communist_num[15]['num'];
+				document.getElementById('communist_num_17').innerHTML = communist_num[17]['num'];
+				document.getElementById('communist_num_21').innerHTML = communist_num[21]['num'];
+
+
+				//支部活动
+				article_list = jsondata[2]['article_list'];
+				if(article_list){
+					$.each(article_list,function(x,i){
+						html += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
+								"<p class=\"dangzongzhixiangqing-center-div-p\">党总书记</p>\n" +
+								"<img src=\"../img/04.png\" alt=\"\">\n" +
+								"<p>"+i['communist_name']+"</p>\n" +
+								"\n" +
+								"</div>";
+					})
+				}
+
+
+				//支部成员
+				communist_data = jsondata[2]['communist_data'];
+				var html = '';
+				var html1 = '';
+				var html2 = '';
+				$.each(communist_data,function(index,item){
+					if(item['no'] == 103){
+						$.each(item['communist_list'],function(x,i){
+						html += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
+								"<p class=\"dangzongzhixiangqing-center-div-p\">党总书记</p>\n" +
+								"<img src=\"../img/04.png\" alt=\"\">\n" +
+								"<p>"+i['communist_name']+"</p>\n" +
+								"\n" +
+								"</div>";
+						})
+					}
+
+					// //党总支副书记,支部书记
+					// if(item['no'] == 104 || item['no'] == 201 ){
+					// 	$.each(item['communist_list'],function(x,i){
+					// 		html += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
+					// 				"<p class=\"dangzongzhixiangqing-center-div-p\">党总支副书记/支部书记</p>\n" +
+					// 				"<img src=\"../img/04.png\" alt=\"\">\n" +
+					// 				"<p>"+i['communist_name']+"</p>\n" +
+					// 				"\n" +
+					// 				"</div>";
+					// 	})
+					// }
+
+					if(item['no'] != 103 || item['no'] == 104 || item['no'] == 201 ){
+						$.each(item['communist_list'],function(x,i){
+							html1 += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
+									"<p class=\"dangzongzhixiangqing-center-div-p\">支部成员</p>\n" +
+									"<img src=\"../img/04.png\" alt=\"\">\n" +
+									"<p>"+i['communist_name']+"</p>\n" +
+									"\n" +
+									"</div>";
+						})
+					}
+
+				})
+
+				$("#listClick").html(html);
+				$("#listClick2").html(html1);
+
+
+			},
+			failure: function (data) {
+				console.log('Failure');
+			}
+		})
+
+
+		function getDetail(index){
+			if(index == 'zhengshi'){
+				location.href = 'zhengshidangyuan.html?party_no='+party_no+'&type='+index+'';
+
+			}else if(index=='17'){
+				location.href = 'fazhanqingkuangxiangqing17.html?party_no='+party_no+'&type='+index+'';
+
+			}else if(index=='15'){
+				location.href = 'fazhanqingkuangxiangqing15.html?party_no='+party_no+'&type='+index+'';
+
+			}else if(index=='13'){
+				location.href = 'fazhanqingkuangxiangqing13.html?party_no='+party_no+'&type='+index+'';
+
+			}else if(index=='11'){
+				location.href = 'fazhanqingkuangxiangqing11.html?party_no='+party_no+'&type='+index+'';
+
+			}
+		}
+
+	</script>
 	<script>
 		//轮播单独页面引用
 		var mySwiper2 = new Swiper('.swiper-container', {

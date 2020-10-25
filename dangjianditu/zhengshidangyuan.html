@@ -42,132 +42,7 @@
 							<img class="dangjianditu-img" style="width:3.8rem;" src="../img/01.png" alt="">
 							<div class="scroll-font scroll-font3" style="width: 100%;height: 7.4rem;overflow-y: hidden;">
 								<div class="zhengshidangyuan-list box box-wrap dangzongzhixiangqing-center-list">
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
-									<a href="chengyuanxinxi-001.html">
-										<div class="dangzongzhixiangqing-center-div" >
-											<img src="../img/04.png" alt="">
-											<p>姓名</p>
-										</div>
-									</a>
+
 								</div>
 							</div>
 						</div>
@@ -178,5 +53,52 @@
 	</body>
 	<script src="../js/jquery-1.11.3.min.js"></script>
 	<script src="../js/public.js"></script>
+	<script src="../js/common.js"></script>
 
+	<script>
+		var party_no = getQueryVariable('party_no');
+		var type = getQueryVariable('type');
+		$.ajax({
+			url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/CommunistList',
+			method: 'POST',
+			async : true,
+			tradition:true,
+			crossDomain: true,
+
+			dataType: 'json',
+			data: {party_no:party_no,type:21},
+			success: function(jsondata){
+
+				jsondata = Object.values(jsondata);
+				console.log(jsondata);
+
+
+				communist_data = jsondata[2];
+				var html = '';
+
+				$.each(communist_data,function(index,item){
+
+							html += "<a href=\"chengyuanxinxi.html?communist_id="+item['communist_id']+"\">\n" +
+									"<div class=\"dangzongzhixiangqing-center-div\" >\n" +
+									"<img src=\""+item['communist_avatar']+"\" alt=\"\">\n" +
+									"<p>"+item['communist_name']+"</p>\n" +
+									"</div>\n" +
+									"</a>";
+
+
+
+				})
+
+				$(".dangzongzhixiangqing-center-list").html(html);
+
+
+
+			},
+			failure: function (data) {
+				console.log('Failure');
+			}
+		})
+
+
+	</script>
 </html>

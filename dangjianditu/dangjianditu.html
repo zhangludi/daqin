@@ -44,74 +44,13 @@
 								<div class="dangjianditu-left-img">
 									<img class="dangjianditu-left-img-font" style="width: 100%;" src="../img/24.png" alt="">
 									<div id="listClick">
-										<div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 1.6rem;left: 3.6rem;">
+										<!--<div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 1.6rem;left: 3.6rem;">
 											<div class="dangjianditu-left-btn-div">
 												<img src="../img/25.png" alt="">
 												<div class="dangjianditu-left-btn-div-pos" id="party_no_101">大横琴集团总部党支部</div>
 											</div>
-										</div>
-										<div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 1.8rem;left: 4.7rem;">
-											<div class="dangjianditu-left-btn-div">
-												<img src="../img/25.png" alt="">
-												<div class="dangjianditu-left-btn-div-pos">大横琴股份公司党总支
-												</div>
-											</div>
-										</div>
-										<div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 1.5rem;left: 5.9rem;">
-											<div class="dangjianditu-left-btn-div">
-												<img src="../img/25.png" alt="">
-												<div class="dangjianditu-left-btn-div-pos">大横琴置业公司党总支
-												</div>
-											</div>
-										</div>
-										<div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 2.6rem;left: 3rem;">
-											<div class="dangjianditu-left-btn-div">
-												<img src="../img/25.png" alt="">
-												<div class="dangjianditu-left-btn-div-pos">大横琴口岸公司党支部
-												</div>
-											</div>
-										</div>
-										<div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 3.2rem;left: 2.46rem;">
-											<div class="dangjianditu-left-btn-div">
-												<img src="../img/25.png" alt="">
-												<div class="dangjianditu-left-btn-div-pos">大横琴科技公司党支部
-												</div>
-											</div>
-										</div>
-										<div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 3.1rem;left: 3.5rem;">
-											<div class="dangjianditu-left-btn-div">
-												<img src="../img/25.png" alt="">
-												<div class="dangjianditu-left-btn-div-pos">大横琴泛旅游公司党支部
-												</div>
-											</div>
-										</div>
-										<div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 2.8rem;left: 4rem;">
-											<div class="dangjianditu-left-btn-div">
-												<img src="../img/25.png" alt="">
-												<div class="dangjianditu-left-btn-div-pos">大横琴城市新中心公司党支部
-												</div>
-											</div>
-										</div>
-										<div data-url="jituandangwei.html" class="dangjianditu-left-btn" style="top: 2.6rem;left: 5.8rem;">
-											<div class="dangjianditu-left-btn-div"  class="party_no_100">
-												<img src="../img/25.png" alt="">
-												<div class="dangjianditu-left-btn-div-pos">大横琴集团党委</div>
-											</div>
-										</div>
-										<div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 3.3rem;left: 5.3rem;">
-											<div class="dangjianditu-left-btn-div">
-												<img src="../img/25.png" alt="">
-												<div class="dangjianditu-left-btn-div-pos">大横琴城资公司党支部
-												</div>
-											</div>
-										</div>
-										<div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 4rem;left: 4.2rem;">
-											<div class="dangjianditu-left-btn-div">
-												<img src="../img/25.png" alt="">
-												<div class="dangjianditu-left-btn-div-pos">检测中心党支部
-												</div>
-											</div>
-										</div>
+										</div>-->
+
 										<!-- <div data-url="dangzongzhixiangqing.html" class="dangjianditu-left-btn" style="top: 3.6rem;left: 6.1rem;"> -->
 										<!-- <div class="dangjianditu-left-btn-div"> -->
 										<!-- <img src="../img/25.png" alt=""> -->
@@ -214,7 +153,6 @@
 			success: function(jsondata){
 
 				jsondata = Object.values(jsondata);
-				console.log(jsondata);
 				communist_num = jsondata[2]['communist_num'];
 				console.log(communist_num);
 				document.getElementById('communist_num_11').innerHTML = communist_num[11]['num'];
@@ -265,6 +203,56 @@
 
 		}
 	}
+
+	var htmlmap = '';
+	$.ajax({
+		url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/PartyListWithType',
+		method: 'POST',
+		async : true,
+		tradition:true,
+		crossDomain: true,
+
+		dataType: 'json',
+		data:{type_id:3},
+		success: function(jsondata){
+
+			jsondata = Object.values(jsondata);
+			console.log('33');
+			console.log(jsondata);
+			if(jsondata.status == 0){
+				return false;
+			}
+			jsondata = Object.values(jsondata);
+
+			arr = jsondata[2];
+			style = [
+				"top: 1.8rem;left: 4.7rem;","top: 1.5rem;left: 5.9rem;",
+				"top: 2.6rem;left: 3rem;","top: 3.2rem;left: 2.46rem;","top: 3.1rem;left: 3.5rem;",
+				"top: 2.8rem;left: 4rem;","top: 2.6rem;left: 5.8rem;","top: 3.3rem;left: 5.3rem;",
+				"top: 4rem;left: 4.2rem;"
+			]
+			$.each(arr,function(index,item){
+				console.log(item);
+
+				party_name = item['party_name'].substring(0,14);
+				htmlmap += "<div data-url=\"dangzongzhixiangqing.html?party_no="+item['party_no']+"\" class=\"dangjianditu-left-btn\" style=\""+style[index]+"\">\n" +
+						"<div class=\"dangjianditu-left-btn-div\">\n" +
+						"<img src=\"../img/25.png\" alt=\"\">\n" +
+						"<div class=\"dangjianditu-left-btn-div-pos\" id=\"party_no_101\">"+party_name+"</div>\n" +
+						"</div>\n" +
+						"</div>";
+
+			})
+			console.log(htmlmap);
+
+			$("#listClick").html(htmlmap);
+
+		},
+		failure: function (data) {
+			console.log('Failure');
+		}
+	})
+
 	</script>
 
 </html>
