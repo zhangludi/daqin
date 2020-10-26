@@ -133,55 +133,53 @@
 
 				//会议
 				metting_num = jsondata[2]['metting_num'];
-
-
-				document.getElementById('metting_num_0').innerHTML = metting_num[0]['num'];
-				document.getElementById('metting_num_1').innerHTML = metting_num[1]['num'];
-				document.getElementById('metting_num_2').innerHTML = metting_num[2]['num'];
+				$.each(metting_num,function(index,item){
+					document.getElementById('metting_num_'+index).innerHTML = metting_num[index]['num'];
+				})
 
 
 				//领导班子
 				communist_data = jsondata[2]['duty_list'];
-				console.log(duty_list);
+				console.log(communist_data);
 				if(communist_data == ''){
 					return false;
 				}
 				var html = '';
 				var html1 = '';
 				var html2 = '';
-				$.each(communist_data,function(index,item){
-					if(item['no'] == 103){
-						$.each(item['communist_list'],function(x,i){
+				$.each(communist_data,function(index,i){
+					if(i['post_no'] == 103){
+
 							html += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
 									"<p class=\"dangzongzhixiangqing-center-div-p\">党总书记</p>\n" +
 									"<img src=\"../img/04.png\" alt=\"\">\n" +
 									"<p>"+i['communist_name']+"</p>\n" +
 									"\n" +
 									"</div>";
-						})
+
 					}
 
 					// //党总支副书记,支部书记
-					// if(item['no'] == 104 || item['no'] == 201 ){
-					// 	$.each(item['communist_list'],function(x,i){
-					// 		html += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
-					// 				"<p class=\"dangzongzhixiangqing-center-div-p\">党总支副书记/支部书记</p>\n" +
-					// 				"<img src=\"../img/04.png\" alt=\"\">\n" +
-					// 				"<p>"+i['communist_name']+"</p>\n" +
-					// 				"\n" +
-					// 				"</div>";
-					// 	})
-					// }
+					 if(i['post_no'] == 104 || i['post_no'] == 201 ){
 
-					if(item['no'] != 103 || item['no'] == 104 || item['no'] == 201 ){
-						$.each(item['communist_list'],function(x,i){
+							html2 += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
+									"<p class=\"dangzongzhixiangqing-center-div-p\">党总支副书记/支部书记</p>\n" +
+									"<img src=\"../img/04.png\" alt=\"\">\n" +
+									"<p>"+i['communist_name']+"</p>\n" +
+									"\n" +
+									"</div>";
+
+					 }
+
+					if(i['post_no'] != 103 && i['post_no'] == 104 && i['post_no'] == 201 ){
+
 							html1 += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
 									"<p class=\"dangzongzhixiangqing-center-div-p\">支部成员</p>\n" +
 									"<img src=\"../img/04.png\" alt=\"\">\n" +
 									"<p>"+i['communist_name']+"</p>\n" +
 									"\n" +
 									"</div>";
-						})
+
 					}
 
 				})
