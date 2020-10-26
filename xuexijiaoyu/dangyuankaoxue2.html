@@ -206,6 +206,9 @@
 
 
 
+
+
+
         //获取正确答案,如果正确
         right_answer = $("input[name='right_answer_"+index+"']").val();
         questions_type = $("input[name='questions_type_"+index+"']").val();
@@ -257,8 +260,12 @@
         $("input[name='all_answers']").val(all_answers);
 
         if(all_index == all_questions_num){
-            location.href = 'jieguo.html?all_right_num='+all_right_num+'&all_wrong_num='+all_wrong_num+'&all_questions_num='+all_questions_num;
+            all_right_num1 = $("input[name='all_right_num']").val();
+            all_wrong_num1 = $("input[name='all_wrong_num']").val();
+            location.href = 'jieguo.html?all_right_num='+all_right_num1+'&all_wrong_num='+all_wrong_num1+'&all_questions_num='+all_questions_num;
         }
+
+
         $("#submitBtn_"+index).hide();
         $("#nextBtn_"+index).show();
 
