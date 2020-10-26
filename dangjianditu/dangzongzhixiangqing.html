@@ -122,40 +122,25 @@
 						<div class="border-font-div">
 							<img class="dangjianditu-img" style="width:2.58rem;" src="../img/01.png" alt="">
 							<p class="weiyuanhui text-align-center" style="border-bottom: 0;">支部活动</p>
-							<div class="swiper-container" style="height: 6.58rem;">
-								<div class="swiper-wrapper" id="listClick4">
-									<div class="swiper-slide swiper-div" data-url="dangjiangongjian.html">
-										<div>
-											<img src="../img/10.png" alt="">
-											<p>大横琴集团党委组织召开庆祝 <br>中国共产党成立98周年暨表彰大会。</p>
+							<div class="" style="height: 6.58rem;overflow: hidden;">
+								<div class="swiper-container" style="height: 3.29rem;overflow: initial;">
+									<div class="swiper-wrapper" id="listClick4_slide">
+										<div class="swiper-slide swiper-div" data-url="dangjiangongjian.html">
+
+											<div>
+												<img src="../img/11.png" alt="">
+												<p>大横琴集团党委组织党员干部赴井冈山开展<br> “不忘初心、牢记使命”主题教育专题培训班。</p>
+											</div>
 										</div>
-										<div>
-											<img src="../img/11.png" alt="">
-											<p>大横琴集团党委组织党员干部赴井冈山开展<br> “不忘初心、牢记使命”主题教育专题培训班。</p>
-										</div>
-									</div>
-									<div class="swiper-slide swiper-div" data-url="dangjiangongjian.html">
-										<div>
-											<img src="../img/10.png" alt="">
-											<p>大横琴集团党委组织召开庆祝 <br>中国共产党成立98周年暨表彰大会。</p>
-										</div>
-										<div>
-											<img src="../img/11.png" alt="">
-											<p>大横琴集团党委组织党员干部赴井冈山开展<br> “不忘初心、牢记使命”主题教育专题培训班。</p>
-										</div>
-									</div>
-									<div class="swiper-slide swiper-div" data-url="dangjiangongjian.html">
-										<div>
-											<img src="../img/10.png" alt="">
-											<p>大横琴集团党委组织召开庆祝 <br>中国共产党成立98周年暨表彰大会。</p>
-										</div>
-										<div>
-											<img src="../img/11.png" alt="">
-											<p>大横琴集团党委组织党员干部赴井冈山开展<br> “不忘初心、牢记使命”主题教育专题培训班。</p>
+										<div class="swiper-slide swiper-div" data-url="dangjiangongjian.html">
+											<div>
+												<img src="../img/10.png" alt="">
+												<p>大横琴集团党委组织召开庆祝 <br>中国共产党成立98周年暨表彰大会。</p>
+											</div>
+
 										</div>
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -194,17 +179,36 @@
 
 				//支部活动
 				article_list = jsondata[2]['article_list'];
+				article_list_html0 = '';
+				article_list_html = '';
+				article_list_html1 = '';
+				article_list_html2 = '';
 				if(article_list){
 					$.each(article_list,function(x,i){
-						html += "<div class=\"dangzongzhixiangqing-center-div\" data-url=\"chengyuanxinxi.html?communist_id="+i['communist_id']+"\">\n" +
-								"<p class=\"dangzongzhixiangqing-center-div-p\">党总书记</p>\n" +
-								"<img src=\"../img/04.png\" alt=\"\">\n" +
-								"<p>"+i['communist_name']+"</p>\n" +
+
+
+
+						article_list_html0 =
+								"<div class=\"swiper-slide swiper-div\" onclick=\"getDetail("+i['article_id']+")\" >\n" +
+								"<div>\n" ;
+						article_list_html1 = 	"<img src=\"../img/10.png\" alt=\"\">\n" ;
+
+						if(i['article_thumb']){
+								article_list_html1 = 	"<img src=\""+i['article_thumb']+"\" alt=\"\">\n" ;
+
+							}
+
+
+							article_list_html2 = 	"<p>"+i['article_title']+"</p>\n" +
+								"</div>\n" +
 								"\n" +
 								"</div>";
+
+						article_list_html += 	article_list_html0+article_list_html1+article_list_html2;
+
 					})
 				}
-
+			$("#listClick4_slide").html(article_list_html);
 
 				//支部成员
 				communist_data = jsondata[2]['communist_data'];
@@ -251,6 +255,9 @@
 				$("#listClick").html(html);
 				$("#listClick2").html(html1);
 
+				//支部会议
+
+
 
 			},
 			failure: function (data) {
@@ -276,6 +283,10 @@
 				location.href = 'fazhanqingkuangxiangqing11.html?party_no='+party_no+'&type='+index+'';
 
 			}
+		}
+		function getDetail(article_id){
+			location.href = "zhibuhuodong_detail.html?article_id="+article_id;
+
 		}
 
 	</script>

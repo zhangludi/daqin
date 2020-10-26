@@ -40,81 +40,8 @@
         <div class="scroll-font">
             <div class="dangzhangdanggui-xiangqing-title text-align-center">题库一</div>
             <div class="dividing-line"></div>
-            <p class="dangzhangdanggui-xiangqing-title">单选(1/50)</p>
-            <div>
-                <p class="dangyuankaoxue-content">1.党章规定，预备党员的预备期最长为（
-                    <span class="dangyuankaoxue-checked"></span>
-                    ）</p>
-                <div class="dangyuankaoxue-list">
-                    <div>
-                        <label class="dangyuankaoxue-list-label">
-                            <input class="dangyuankaoxue-list-inp" type="radio" name="radio" value="A"/>
-                            <span></span>
-                            A.一年
-                        </label>
-                    </div>
-                    <div>
-                        <label class="dangyuankaoxue-list-label">
-                            <input class="dangyuankaoxue-list-inp" type="radio" name="radio" value="B"/>
-                            <span></span>
-                            B.一年半
-                        </label>
-                    </div>
-                    <div>
-                        <label class="dangyuankaoxue-list-label">
-                            <input class="dangyuankaoxue-list-inp" type="radio" name="radio" value="C"/>
-                            <span></span>
-                            C.两年
-                        </label>
-                    </div>
-                    <div>
-                        <label class="dangyuankaoxue-list-label">
-                            <input class="dangyuankaoxue-list-inp" type="radio" name="radio" value="D"/>
-                            <span></span>
-                            D.三年
-                        </label>
-                    </div>
+            <div id="exam_exam"></div>
 
-                    <!-- 多选 -->
-                    <!-- <div>
-                        <label>
-                            <input type="checkbox" name="checkbox" value="A" hidden="hidden"/>
-                            A.一年
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="checkbox" name="checkbox" value="B" hidden="hidden"/>
-                            B.一年半
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="checkbox" name="checkbox" value="C" hidden="hidden"/>
-                            C.两年
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="checkbox" name="checkbox" value="D" hidden="hidden"/>
-                            D.三年
-                        </label>
-                    </div> -->
-                </div>
-                <div class="box box-justify-content2 box-align-items dangyuankaoxue2-bottom">
-                    <div class="box box-align-items">
-                        <div class="dangyuankaoxue2-bottom-div" id="submitBtn">确认</div>
-                        <div class="dangyuankaoxue2-bottom-div" id="nextBtn" style="display: none;">下一题</div>
-                        <p class="dangyuankaoxue2-bottom-title" id="dangyuankaoxue2-bottom-title">回答错误</p>
-                    </div>
-                    <a id="itemClick">查 看 提 示</a>
-                </div>
-                <p class="dangyuankaoxue-tishi" id="dangyuankaoxue-tishi2">提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息</p>
-                <p class="dangyuankaoxue-tishi" id="dangyuankaoxue-tishi">
-                    正确答案：C <br>
-                    答案解析答案解析答案解析答案解析答案解析答案解析答案解析
-                </p>
-            </div>
         </div>
     </div>
 </div>
@@ -125,19 +52,89 @@
 
 <script>
 
+    var html0 = '';
     var html = '';
+    var html2 = '';
+    var html3 = '';
+    var html4 = '';
+    var questions_type='';
+
+    var exam_id = getQueryVariable('exam_id');
     $.ajax({
-        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/ExemList',
+        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/QuestionList',
         method: 'POST',
         async : true,
         tradition:true,
         crossDomain: true,
         dataType: 'json',
-
+        data:{exam_id:exam_id},
         success: function(jsondata){
 
             jsondata = Object.values(jsondata);
             console.log(jsondata);
+            arr = jsondata[2];
+            len = arr.length;
+            $.each(arr,function(index,item){
+                console.log(item);
+                i_num = index+1;
+                questions_item = item['questions_item'];
+                questions_item_arr = questions_item.split(',');
+                if(index==0){
+                    html0 = "<div class=\"exam_exam\" id='exam_"+index+"' >\n";
+                }else{
+                    html0 = "<div class=\"exam_exam\" id='exam_"+index+"' style=\"display:none;\">\n";
+                }
+                switch(item['questions_type']){
+                    case "1":
+                        questions_type = '单选';
+                        break;
+                    case "2":
+                        questions_type = '多选';
+                        break;
+                    case "3":
+                        questions_type = '判断';
+                        break;
+                }
+                html =
+                    "            <p class=\"dangzhangdanggui-xiangqing-title\">"+questions_type+"("+i_num+"/"+len+")</p>\n" +
+                    "            <div>\n" +
+                    "                <p class=\"dangyuankaoxue-content\">"+item['questions_title']+"" +
+                    "                    <span class=\"dangyuankaoxue-checked\"></span>\n" +
+                    "                    </p>\n" +
+                    "                <div class=\"dangyuankaoxue-list\">\n" ;
+
+                    $.each(questions_item_arr,function(n,i) {
+                        html2 += " <div>\n" +
+                            "                        <label class=\"dangyuankaoxue-list-label\">\n" +
+                            "                            <input class=\"dangyuankaoxue-list-inp\" type=\"radio\" name=\"radio\" value=\"A\"/>\n" +
+                            "                            <span></span>\n" +
+                            "                           "+i+"\n" +
+                            "                        </label>\n" +
+                            "                    </div>";
+                    })
+
+                 html3 =    "                </div>\n" +
+                    "                <div class=\"box box-justify-content2 box-align-items dangyuankaoxue2-bottom\">\n" +
+                    "                    <div class=\"box box-align-items\">\n" +
+                    "                        <div class=\"dangyuankaoxue2-bottom-div\" id=\"submitBtn_"+index+"\" onclick='submitBtn("+index+")'>确认</div>\n" +
+                    "                        <div class=\"dangyuankaoxue2-bottom-div\" id=\"nextBtn_"+index+"\" onclick='nnextBtn("+index+")' style=\"display: none;\">下一题</div>\n" +
+                    "                        <p class=\"dangyuankaoxue2-bottom-title\" id=\"dangyuankaoxue2-bottom-title_"+index+"\" onclick='dangyuankaoxue2("+index+")'>回答错误</p>\n" +
+                    "                    </div>\n" +
+                    "                    <a id=\"itemClick_"+index+"\" onclick='itemClick("+index+")'>查 看 提 示</a>\n" +
+                    "                </div>\n" +
+                    "                <p class=\"dangyuankaoxue-tishi\" id=\"dangyuankaoxue-tishi2_"+index+"\" onclick='dangyuankaoxue("+index+")'>提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息</p>\n" +
+                    "                <p class=\"dangyuankaoxue-tishi\" id=\"dangyuankaoxue-tishi_"+index+"\" onclick='dangyuankaoxue3("+index+")' >\n" +
+                    "                    正确答案：C <br>\n" +
+                    "                    答案解析答案解析答案解析答案解析答案解析答案解析答案解析\n" +
+                    "                </p>\n" +
+                    "            </div>\n" +
+                    "\n" +
+                    "            </div>";
+
+                html4 += html0+html+html2+html3;
+
+            })
+            $("#exam_exam").html(html4);
 
         },
         failure: function (data) {
@@ -172,22 +169,24 @@
         $(".dangyuankaoxue-checked").text(html);
     }) */
 
-    //查看提示信息
-    $("#itemClick").click(function(){
-        $("#dangyuankaoxue-tishi2").show()
-    })
 
-    //确认点击事件
-    $("#submitBtn").click(function(){
-        $(this).hide();
-        $("#nextBtn").show();
-        $("#dangyuankaoxue2-bottom-title").show();
-        $("#dangyuankaoxue-tishi").show();
-    })
+    function itemClick(index){
 
-    //点击下一题事件
-    $("#nextBtn").click(function(){
+        $("#dangyuankaoxue-tishi2_"+index).show()
+    }
+
+    function submitBtn(index){
+
+        $("#submitBtn_"+index).hide();
+        $("#nextBtn_"+index).show();
+        $("#dangyuankaoxue2-bottom-title_"+index).show();
+        $("#dangyuankaoxue-tishi_"+index).show();
+    }
+    function nnextBtn(index){
+        $().
         location.replace = "dangyuankaoxue-jieguo.html";
-    })
+    }
+
+
 </script>
 </html>
