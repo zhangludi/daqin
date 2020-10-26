@@ -41,7 +41,10 @@
             <div class="dangzhangdanggui-xiangqing-title text-align-center">题库一</div>
             <div class="dividing-line"></div>
             <div id="exam_exam"></div>
-
+            <input type="hidden" value="" name="all_answers"/>
+            <input type="hidden" value="0" name="all_right_num"/>
+            <input type="hidden" value="0" name="all_wrong_num"/>
+            <input type="hidden" value="0" name="all_questions_num"/>
         </div>
     </div>
 </div>
@@ -54,7 +57,6 @@
 
     var html0 = '';
     var html = '';
-    var html2 = '';
     var html3 = '';
     var html4 = '';
     var questions_type='';
@@ -74,8 +76,8 @@
             console.log(jsondata);
             arr = jsondata[2];
             len = arr.length;
+            $("input[name='all_questions_num']").val(len);
             $.each(arr,function(index,item){
-                console.log(item);
                 i_num = index+1;
                 questions_item = item['questions_item'];
                 questions_item_arr = questions_item.split(',');
@@ -95,6 +97,7 @@
                         questions_type = '判断';
                         break;
                 }
+                html2 = '';
                 html =
                     "            <p class=\"dangzhangdanggui-xiangqing-title\">"+questions_type+"("+i_num+"/"+len+")</p>\n" +
                     "            <div>\n" +
@@ -103,15 +106,32 @@
                     "                    </p>\n" +
                     "                <div class=\"dangyuankaoxue-list\">\n" ;
 
+                select_arr = ["A","B","C","D","E","F"];
+
+                if(item['questions_type'] == 1){
                     $.each(questions_item_arr,function(n,i) {
                         html2 += " <div>\n" +
                             "                        <label class=\"dangyuankaoxue-list-label\">\n" +
-                            "                            <input class=\"dangyuankaoxue-list-inp\" type=\"radio\" name=\"radio\" value=\"A\"/>\n" +
+                            "                            <input class=\"dangyuankaoxue-list-inp\" type=\"radio\" name=\"radio_"+index+"\" value=\""+select_arr[n]+"\"/>\n" +
                             "                            <span></span>\n" +
                             "                           "+i+"\n" +
                             "                        </label>\n" +
                             "                    </div>";
                     })
+                }
+
+
+                    if(item['questions_type'] == 2){
+                        $.each(questions_item_arr,function(n,i) {
+                            html2 += "<div>\n" +
+                                "<label>\n" +
+                                "<input type=\"checkbox\" name=\"checkbox_"+index+"\" value=\""+select_arr[n]+"\" />\n" +
+                                ""+i+"\n" +
+                                "</label>\n" +
+                                "</div>\n" ;
+                        })
+
+                    }
 
                  html3 =    "                </div>\n" +
                     "                <div class=\"box box-justify-content2 box-align-items dangyuankaoxue2-bottom\">\n" +
@@ -124,12 +144,15 @@
                     "                </div>\n" +
                     "                <p class=\"dangyuankaoxue-tishi\" id=\"dangyuankaoxue-tishi2_"+index+"\" onclick='dangyuankaoxue("+index+")'>提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息提示信息</p>\n" +
                     "                <p class=\"dangyuankaoxue-tishi\" id=\"dangyuankaoxue-tishi_"+index+"\" onclick='dangyuankaoxue3("+index+")' >\n" +
-                    "                    正确答案：C <br>\n" +
-                    "                    答案解析答案解析答案解析答案解析答案解析答案解析答案解析\n" +
+                    "                    正确答案："+item['questions_answer']+" <br>\n" +
+                    "                    "+item['memo']+"\n" +
                     "                </p>\n" +
                     "            </div>\n" +
                     "\n" +
-                    "            </div>";
+                    "            </div>"+
+                    " <input type='hidden' value='"+item['questions_answer']+"' name='right_answer_"+index+"'/>     " +
+                    " <input type='hidden' value='"+item['questions_type']+"' name='questions_type_"+index+"'/>     " +
+                     "      </div>";
 
                 html4 += html0+html+html2+html3;
 
@@ -176,15 +199,78 @@
     }
 
     function submitBtn(index){
+        all_index = index+1;
+        all_questions_num = $("input[name='all_questions_num']").val();
+        all_right_num = $("input[name='all_right_num']").val();
+        all_wrong_num = $("input[name='all_wrong_num']").val();
 
+
+
+        //获取正确答案,如果正确
+        right_answer = $("input[name='right_answer_"+index+"']").val();
+        questions_type = $("input[name='questions_type_"+index+"']").val();
+        if(questions_type == 1){
+            your_answer =   $("input[name='radio_"+index+"']:checked").val();
+        }
+
+
+        if(questions_type == 2){
+
+            $('input:checkbox[name=checkbox_'+index+']:checked').each(function (i) {
+                if (0 == i) {
+                    your_answer = $(this).val();
+                } else {
+                    your_answer += ("," + $(this).val());
+                }
+            });
+        }
+
+        //如果错误
+        if(your_answer == right_answer){
+
+
+            all_right_num_index = Number(all_right_num)+1;
+
+            $("input[name='all_right_num']").val(all_right_num_index);
+        }else{
+
+            all_wrong_num_index = Number(all_wrong_num)+1;
+
+            $("input[name='all_wrong_num']").val(all_wrong_num_index);
+            $("#dangyuankaoxue2-bottom-title_"+index).show();
+            $("#dangyuankaoxue-tishi_"+index).show();
+        }
+
+
+        //记录选择的答案
+
+        if(index == 0){
+            all_answers = [];
+        }else{
+            all_answers = $("input[name='all_answers']").val();
+
+        }
+        console.log(your_answer);
+
+       // all_answers =  all_answers.push(""+your_answer+"");
+        console.log(all_answers);
+        $("input[name='all_answers']").val(all_answers);
+
+        if(all_index == all_questions_num){
+            location.href = 'jieguo.html?all_right_num='+all_right_num+'&all_wrong_num='+all_wrong_num+'&all_questions_num='+all_questions_num;
+        }
         $("#submitBtn_"+index).hide();
         $("#nextBtn_"+index).show();
-        $("#dangyuankaoxue2-bottom-title_"+index).show();
-        $("#dangyuankaoxue-tishi_"+index).show();
+
+
+
+
     }
     function nnextBtn(index){
-        $().
-        location.replace = "dangyuankaoxue-jieguo.html";
+        $("#exam_"+index).hide();
+        i = index+1;
+        $("#exam_"+i).show();
+        //location.replace = "dangyuankaoxue-jieguo.html";
     }
 
 

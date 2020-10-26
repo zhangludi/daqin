@@ -67,7 +67,7 @@
             arr = jsondata[2];
             $.each(arr,function(index,item){
                 html += "        " +
-                    "        <div data-url=\"dangyuankaoxue2.html?exam_id="+item['exam_id']+"\" class=\"dangjiangongjian-div new-dangyuankaoxue-list-div\">" +
+                    "        <div id=\"justfy_user_"+index+"\" onclick=\"justfy_user("+index+")\" data-url=\"dangyuankaoxue2.html?exam_id="+item["exam_id"]+"\" class=\"dangjiangongjian-div new-dangyuankaoxue-list-div\">" +
                     ""+item['exam_title']+"</div>\n";
             })
         $("#listClick").html(html);
@@ -79,6 +79,11 @@
             console.log('Failure');
         }
     })
+
+function justfy_user(index){
+
+
+}
 
 
 </script>

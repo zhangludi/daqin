@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="x5-orientation" content="portrait">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>党员考学</title>
+    <!--[if lt IE 9]>
+        <script language="JavaScript">
+          (function() {
+            setTimeout(function(){
+                var body = (document.getElementsByTagName("body"))[0];
+                body.innerHTML = "很抱歉，您当前的浏览器版本过低，网站无法正常显示。 请点击<a href='http://10.0.11.111:8080/Chrome_V20_11.exe'>下载谷歌浏览器</a>，下载后点击“运行”自动安装。<br /> 如您的浏览器版本已经是IE9以上，请关闭兼容模式视图：点击右上角“工具”->兼容性视图>在弹出窗口中取消勾选兼容性视图选项。<br />感谢您对慧招网的支持与关注！";
+            },300);
+        })();
+        </script>
+
+    <![endif]-->
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/new.css"/>
+    <script src="../js/rem.js"></script>
+</head>
+<body>
+<div class="background-font background-font2">
+    <a class="position">
+        <div class="dangzhangdanggui-header box">
+            <div class="dangzhangdanggui-header-left box box-align-items box-justify-content">
+                <div class="header-text">党员考学</div>
+            </div>
+            <div class="dangzhangdanggui-header-right">
+                <div class="box" id="backBtn">
+                    <img src="../img/fanhui.png">
+                    <div class="dangzhangdanggui-header-right-div">返回上一级</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="with" style="margin-top: 2rem;">
+
+            <div class="text-align-center dangyuankaoxue-jieguo-div" data-url="dangyuankaoxue.html">答题完毕</div>
+            <div class="box box-align-items box-justify-content">
+                <div class="dangyuankaoxue-jieguo-div2">答对:<span id="all_right_num">0</span>题</div>
+                <div class="dangyuankaoxue-jieguo-div2">答错:<span id="all_wrong_num">0</span>题</div>
+                <div class="dangyuankaoxue-jieguo-div2">正确率:<span id="right_num">0</span>%</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/common.js"></script>
+
+<script>
+    var all_right_num = getQueryVariable('all_right_num');
+    var all_wrong_num = getQueryVariable('all_wrong_num');
+    var all_questions_num = getQueryVariable('all_questions_num');
+
+    right_num = (all_right_num/all_questions_num).toFixed(2)*100;
+    $("#all_right_num").html(all_right_num);
+    $("#all_wrong_num").html(all_wrong_num);
+    $("#right_num").html(right_num);
+    $(".dangyuankaoxue-jieguo-div").click(function(){
+        location.href = "dangyuankaoxue.html";
+
+    })
+</script>
+
+</html>
