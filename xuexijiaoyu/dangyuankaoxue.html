@@ -8,20 +8,137 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>党员考学</title>
     <!--[if lt IE 9]>
-        <script language="JavaScript">
-          (function() {
-            setTimeout(function(){
-                var body = (document.getElementsByTagName("body"))[0];
-                body.innerHTML = "很抱歉，您当前的浏览器版本过低，网站无法正常显示。 请点击<a href='http://10.0.11.111:8080/Chrome_V20_11.exe'>下载谷歌浏览器</a>，下载后点击“运行”自动安装。<br /> 如您的浏览器版本已经是IE9以上，请关闭兼容模式视图：点击右上角“工具”->兼容性视图>在弹出窗口中取消勾选兼容性视图选项。<br />感谢您对慧招网的支持与关注！";
-            },300);
-        })();
-        </script>
+    <script language="JavaScript">
+      (function() {
+        setTimeout(function(){
+            var body = (document.getElementsByTagName("body"))[0];
+            body.innerHTML = "很抱歉，您当前的浏览器版本过低，网站无法正常显示。 请点击<a href='http://10.0.11.111:8080/Chrome_V20_11.exe'>下载谷歌浏览器</a>，下载后点击“运行”自动安装。<br /> 如您的浏览器版本已经是IE9以上，请关闭兼容模式视图：点击右上角“工具”->兼容性视图>在弹出窗口中取消勾选兼容性视图选项。<br />感谢您对慧招网的支持与关注！";
+        },300);
+    })();
+    </script>
 
-    <![endif]-->
+<![endif]-->
     <link rel="stylesheet" href="../css/public.css">
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" type="text/css" href="../css/new.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/new.css" />
     <script src="../js/rem.js"></script>
+    <style type="text/css">
+        .modal {
+            display:none;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1050;
+            -webkit-overflow-scrolling: touch;
+            outline: 0;
+        }
+
+        .modal-dialog {
+            position: relative;
+            padding: 0.1rem;
+            width: 10rem;
+            margin: 1rem auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            border: 1px solid #999;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+            background-clip: padding-box;
+            outline: 0;
+        }
+
+        .modal-body {
+            position: relative;
+            padding: 15px;
+        }
+
+        .close {
+            float: right;
+            -webkit-appearance: none;
+            background-color: transparent;
+            padding: 0;
+            cursor: pointer;
+            border: 0;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.1rem 0.12rem;
+            box-sizing: border-box;
+            heigth: 0.34rem;
+            font-size: 0.3rem;
+            line-height: 0.34rem;
+            color: #555555;
+            background-color: #fff;
+            background-image: none;
+            border: 0.01rem solid #ccc;
+            border-radius: 0.04rem;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+
+        .form-control:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+        }
+
+        .form-control::-moz-placeholder {
+            color: #999;
+            opacity: 1;
+        }
+
+        .form-control:-ms-input-placeholder {
+            color: #999;
+        }
+
+        .form-control::-webkit-input-placeholder {
+            color: #999;
+        }
+
+        .form-control::-ms-expand {
+            border: 0;
+            background-color: transparent;
+        }
+
+        .form-label {
+            font-size: 0.2rem;
+            display: block;
+            margin-bottom: 0.1rem;
+            margin-top: 0.1rem;
+        }
+
+        .modal-btn {
+            cursor: pointer;
+            width: 1rem;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            background-color: #337ab7;
+            font-size: 0.2rem;
+            border-radius: 0.05rem;
+            color: #fff;
+            text-align: center;
+            margin: 0.2rem auto;
+            display: block;
+        }
+
+        .modal-btn:hover {
+            background-color: #286090;
+        }
+    </style>
 </head>
 <body>
 <div class="background-font background-font2">
@@ -30,7 +147,7 @@
             <div class="dangzhangdanggui-header-left box box-align-items box-justify-content">
                 <div class="header-text">党员考学</div>
             </div>
-            <div class="dangzhangdanggui-header-right" data-url="xuexijiaoyu.html">
+            <div class="dangzhangdanggui-header-right">
                 <div class="box" id="backBtn">
                     <img src="../img/fanhui.png">
                     <div class="dangzhangdanggui-header-right-div">返回上一级</div>
@@ -39,7 +156,38 @@
         </div>
         <div class="scroll-font">
             <div class="dangzhibu-margin" style="margin-top: 0.8rem;" id="listClick">
-                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="login" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+              <!--  <button class="close" id="modal-close">
+                    <span>&times;</span>
+                </button>-->
+            </div>
+            <div class="modal-title">
+                <h1 class="text-align-center">登录</h1>
+            </div>
+            <div class="modal-body">
+                <form class="form-group" action="">
+                    <div class="form-group">
+                        <label class="form-label" for="">用户名</label>
+                        <input class="form-control" type="text" name="communist_name" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="">ID</label>
+                        <input class="form-control" type="text" name="communist_idnumber" placeholder="">
+                    </div>
+                    <div>
+                        <button class="modal-btn" id="submitBtn" type="button">登录</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -50,41 +198,80 @@
 
 <script>
 
-    var html = '';
-    $.ajax({
-        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/ExemList',
-        method: 'POST',
-        async : true,
-        tradition:true,
-        crossDomain: true,
-        dataType: 'json',
+    //登录
 
-        success: function(jsondata){
+  //  window.sessionStorage.setItem('key',a);
+    communist_no = window.sessionStorage.getItem('communist_no');
+    if(!communist_no){
 
-            jsondata = Object.values(jsondata);
-            console.log(jsondata);
+        $(".modal").show();
 
-            arr = jsondata[2];
-            $.each(arr,function(index,item){
-                html += "        " +
-                    "        <div id=\"justfy_user_"+index+"\" onclick=\"justfy_user("+index+")\" data-url=\"dangyuankaoxue2.html?exam_id="+item["exam_id"]+"\" class=\"dangjiangongjian-div new-dangyuankaoxue-list-div\">" +
-                    ""+item['exam_title']+"</div>\n";
-            })
-        $("#listClick").html(html);
+    }
 
 
+    $("#submitBtn").click(function(){
+        communist_name = $("input[name='communist_name']").val();
+        communist_idnumber = $("input[name='communist_idnumber']").val();
 
-        },
-        failure: function (data) {
-            console.log('Failure');
-        }
+        $.ajax({
+            url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/check_login',
+            method: 'POST',
+            async : true,
+            tradition:true,
+            crossDomain: true,
+            dataType: 'json',
+            data:{communist_idnumber:communist_idnumber,communist_name:communist_name},
+            success: function(jsondata){
+
+                jsondata = Object.values(jsondata);
+
+                console.log(jsondata);
+                user_msg = jsondata[2];
+                window.sessionStorage.setItem('user_msg',user_msg['communist_no']);
+                communist_no = user_msg['communist_no'];
+                $(".modal").hide();
+            },
+            failure: function (data) {
+                console.log('Failure');
+            }
+        })
     })
 
-function justfy_user(index){
+    //if(communist_no){
+        var html = '';
+        $.ajax({
+            url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/ExemList',
+            method: 'POST',
+            async : true,
+            tradition:true,
+            crossDomain: true,
+            dataType: 'json',
+
+            success: function(jsondata){
+
+                jsondata = Object.values(jsondata);
+                console.log(jsondata);
+
+                arr = jsondata[2];
+                $.each(arr,function(index,item){
+                    html += "        " +
+                        "        <div id=\"justfy_user_"+index+"\" onclick=\"justfy_user("+index+")\" data-url=\"dangyuankaoxue2.html?exam_id="+item["exam_id"]+"&communist_no="+communist_no+"\" class=\"dangjiangongjian-div new-dangyuankaoxue-list-div\">" +
+                        ""+item['exam_title']+"</div>\n";
+                })
+                $("#listClick").html(html);
 
 
-}
+
+            },
+            failure: function (data) {
+                console.log('Failure');
+            }
+        })
+
+   // }
+
+
+
 
 
 </script>
-</html>
