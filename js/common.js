@@ -117,6 +117,15 @@ function getPartyNo(party_no){
             Headertitle = '民主生活会';
             break;
 
+        case '2004':
+            Headertitle = '支部党员大会';
+            break;
+        case '2005':
+            Headertitle = '支委会';
+            break;
+        case '2006':
+            Headertitle = '党课';
+            break;
     }
     return Headertitle;
 }

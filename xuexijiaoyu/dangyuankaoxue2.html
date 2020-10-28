@@ -64,6 +64,9 @@
     var questions_type='';
 
     var exam_id = getQueryVariable('exam_id');
+    var title = decodeURI(getQueryVariable('title'));
+    console.log(title);
+    $(".dangzhangdanggui-xiangqing-title").html(title);
     $.ajax({
         url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/QuestionList',
         method: 'POST',

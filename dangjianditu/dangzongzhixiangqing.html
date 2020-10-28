@@ -76,24 +76,24 @@
 								<img class="dangjianditu-img" style="width:2.58rem;" src="../img/01.png" alt="">
 								<p class="weiyuanhui text-align-center">三会一课</p>
 								<div id="listClick6" class="dangjianditu-right-bottom-list box box-wrap box-justify-content dangzongzhixiangqing-left-bottom-margin">
-									<div class="meetting_detail">
+									<div class="meetting_detail" onclick="huiyiqingkuang('2004')">
 										<p>支部党员大会</p>
-										<p>0</p>
+										<p id="metting_num_2004">0</p>
 										<p>（单位/人）</p>
 									</div>
-									<div class="meetting_detail">
+									<div class="meetting_detail" onclick="huiyiqingkuang('2005')">
 										<p>支委会</p>
-										<p>0</p>
+										<p  id="metting_num_2005">0</p>
 										<p>（单位/人）</p>
 									</div>
-									<div class="meetting_detail">
+									<div class="meetting_detail" onclick="huiyiqingkuang('2001')">
 										<p>党委会</p>
-										<p>0</p>
+										<p  id="metting_num_2001">0</p>
 										<p>（单位/人）</p>
 									</div>
-									<div class="meetting_detail">
+									<div class="meetting_detail" onclick="huiyiqingkuang('2006')">
 										<p>党课</p>
-										<p>0</p>
+										<p  id="metting_num_2006">0</p>
 										<p>（单位/人）</p>
 									</div>
 								</div>
@@ -125,20 +125,7 @@
 							<div class="" style="height: 6.58rem;overflow: hidden;">
 								<div class="swiper-container" style="height: 3.29rem;overflow: initial;">
 									<div class="swiper-wrapper" id="listClick4_slide">
-										<div class="swiper-slide swiper-div" data-url="dangjiangongjian.html">
 
-											<div>
-												<img src="../img/11.png" alt="">
-												<p>大横琴集团党委组织党员干部赴井冈山开展<br> “不忘初心、牢记使命”主题教育专题培训班。</p>
-											</div>
-										</div>
-										<div class="swiper-slide swiper-div" data-url="dangjiangongjian.html">
-											<div>
-												<img src="../img/10.png" alt="">
-												<p>大横琴集团党委组织召开庆祝 <br>中国共产党成立98周年暨表彰大会。</p>
-											</div>
-
-										</div>
 									</div>
 								</div>
 							</div>
@@ -155,6 +142,8 @@
 
 	<script>
 		var party_no = getQueryVariable('party_no');
+		var title = decodeURI(getQueryVariable('title'));
+		$(".header-text").html(title);
 		$.ajax({
 			url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/PartyInfo',
 			method: 'POST',
@@ -257,6 +246,16 @@
 
 				//支部会议
 
+				metting_num = jsondata[2]['metting_num'];
+				console.log(item);
+
+				$.each(metting_num,function(index,item){
+					console.log(item);
+
+					document.getElementById('metting_num_'+item['meeting_type_no']).innerHTML = item['num'];
+				})
+
+
 
 
 
@@ -266,6 +265,10 @@
 			}
 		})
 
+		function huiyiqingkuang(index){
+			location.href = 'huiyiqingkuang.html?party_no='+party_no+'&meeting_type='+index+'';
+
+		}
 
 		function getDetail(index){
 			if(index == 'zhengshi'){

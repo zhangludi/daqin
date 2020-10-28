@@ -91,7 +91,7 @@
             $.each(arr,function(index,item){
                 console.log(item);
                 party_name = item['party_name'].substring(0,15);
-                html += "       <div data-url=\"dangzongzhixiangqing.html?party_no="+item['party_no']+"\" class=\"dangjiangongjian-div dangzongzhi-div\">"+party_name+"" +
+                html += "       <div data-url=\"dangzongzhixiangqing.html?title="+item['party_name']+"&party_no="+item['party_no']+"\" class=\"dangjiangongjian-div dangzongzhi-div\">"+party_name+"" +
                     "</div>\n" +
                     "            ";
 

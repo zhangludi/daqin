@@ -85,15 +85,15 @@
 							<div class="weiyuanhui-left-lsit" style="margin-top: 1.07rem;" id="listClick3">
 								<div class="box box-wrap text-align-center box-align-items" data-url="huiyiqingkuang.html?party_no=100&meeting_type=2001">
 									<p style="width:2.2rem">党委会</p>
-									<p id="metting_num_0">0</p>
+									<p id="metting_num_2001">0</p>
 								</div>
 								<div class="box box-wrap text-align-center box-align-items" data-url="huiyiqingkuang.html?party_no=100&meeting_type=2002">
 									<p style="width:2.2rem">中心组学习</p>
-									<p id="metting_num_1">0</p>
+									<p id="metting_num_2002">0</p>
 								</div>
 								<div class="box box-wrap text-align-center box-align-items" data-url="huiyiqingkuang.html?party_no=100&meeting_type=2003">
 									<p style="width:2.2rem">民主生活会</p>
-									<p id="metting_num_2">0</p>
+									<p id="metting_num_2003">0</p>
 								</div>
 
 							</div>
@@ -134,7 +134,9 @@
 				//会议
 				metting_num = jsondata[2]['metting_num'];
 				$.each(metting_num,function(index,item){
-					document.getElementById('metting_num_'+index).innerHTML = metting_num[index]['num'];
+					console.log(item);
+
+					document.getElementById('metting_num_'+item['meeting_type_no']).innerHTML = item['num'];
 				})
 
 
