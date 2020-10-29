@@ -52,51 +52,48 @@
 <script src="../js/jquery-1.11.3.min.js"></script>
 <script src="../js/public.js"></script>
 <script>
-    $(function() {
-        var maxLength = 500;
-        var arr = {
-            "list": [{
-                'value': "大横琴集团总部党支部",
-                'number': "123"
-            }, {
-                'value': "大横琴股份公司党支部",
-                'number': "354"
-            }, {
-                'value': "大横琴口岸公司党支部",
-                'number': "23"
-            }, {
-                'value': "大横琴科技公司党支部",
-                'number': "354"
-            }, {
-                'value': "大横琴置业公司党支部",
-                'number': "325"
-            }, {
-                'value': "大横琴泛旅游公司党支部",
-                'number': "235"
-            }, {
-                'value': "大横琴城市新中心公司党支部",
-                'number': "123"
-            }, {
-                'value': "大横琴城资公司党支部",
-                'number': "467"
-            }, {
-                'value': "检测中心党支部",
-                'number': "24"
-            }]
+
+
+    var maxLength = 500;
+    $.ajax({
+        url: 'http://zhdhqdj.sp11.cn/index.php/Api/bigdata/PartyListGroup',
+        method: 'POST',
+        async : true,
+        tradition:true,
+        crossDomain: true,
+
+        dataType: 'json',
+        data:{type_id:3},
+        success: function(jsondata){
+
+            jsondata = Object.values(jsondata);
+            if(jsondata.status == 0){
+                return false;
+            }
+            jsondata = Object.values(jsondata);
+            arr = jsondata[2];
+            var html = '<div class="xuexifenbu-list-left">',
+                html2 = '<div class="xuexifenbu-list-right">';
+            $.each(arr, function(index, item) {
+                var wd = Number(item['num']) / maxLength * 10.75;
+                console.log(item['party_name']);
+
+                html += '<div style="font-size: 0.1rem">' + item['party_name'] + '</div>';
+                html2 += '<div class="box box-align-items">' +
+                    '<div class="xuexifenbu-list-right-jindutiao" style="width:' + wd + 'rem;"></div>' + item['num'] +
+                    '</div>';
+            })
+            html += '</div>';
+            //  html2 +=  '</div>';
+            $("#xuexifenbu-list").html(html + html2);
+
+
+        },
+        failure: function (data) {
+            console.log('Failure');
         }
-        var html = '<div class="xuexifenbu-list-left">',
-            html2 = '<div class="xuexifenbu-list-right">';
-        $.each(arr['list'], function(index, item) {
-            var wd = Number(item['number']) / maxLength * 10.75;
-            html += '<div>' + item['value'] + '</div>';
-            html2 += '<div class="box box-align-items">' +
-                '<div class="xuexifenbu-list-right-jindutiao" style="width:' + wd + 'rem;"></div>' + item['number'] +
-                '</div>';
-        })
-        html += '</div>';
-        //  html2 +=  '</div>';
-        $("#xuexifenbu-list").html(html + html2);
     })
+
 </script>
 
 </html>
