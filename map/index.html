@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>获取地区轮廓线</title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=QRCKOxkyqTRiObZikDZE8gZ6"></script>
+
+    <style type="text/css">
+        body{font-size:13px;margin:10px}
+    #container{width:800px;height:500px;border:1px solid gray}
+    </style>
+    </head>
+    <body>
+    <div id="container"></div>
+        <br />
+        <script type="text/javascript">
+    var map = new BMap.Map("container");
+    map.centerAndZoom(new BMap.Point(113.583419,22.276965), 14);
+    map.addControl(new BMap.OverviewMapControl());
+    map.addControl(new BMap.NavigationControl({
+            type: BMAP_NAVIGATION_CONTROL_LARGE,
+            anchor: BMAP_ANCHOR_TOP_LEFT,
+            offset: new BMap.Size(900, 500)
+        })
+    );
+    var bdary = new BMap.Boundary();
+    var name = "珠海市"
+    bdary.get(name, function(rs){       //获取行政区域
+        var count = rs.boundaries.length; //行政区域的点有多少个
+        var EN_JW = "180, 90;";         //东北角
+        var NW_JW = "-180, 90;";       //西北角
+        var WS_JW = "-180, -90;";       //西南角
+        var SE_JW = "180, -90;";        //东南角
+        var ply = new BMap.Polygon(rs.boundaries[count-1] + SE_JW + SE_JW + WS_JW + NW_JW + EN_JW + SE_JW, {
+            strokeColor: "none",
+            fillColor:"#7ab7f2",
+            fillOpacity:1,
+            strokeOpacity:1
+        }); //建立多边形覆盖物
+        map.addOverlay(ply);  //添加覆盖物
+    })//bdary的结尾
+
+    map.enableScrollWheelZoom();
+    </script>
+    </body>
+</html>
